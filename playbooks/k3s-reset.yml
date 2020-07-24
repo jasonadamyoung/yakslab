@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+
+  tasks:
+    - name: K3s | RESET
+      import_role:
+        name: k3s
+        tasks_from: reset.yml

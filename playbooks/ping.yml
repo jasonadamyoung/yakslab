@@ -1,0 +1,7 @@
+- hosts: all
+  become: no
+  become_method: sudo
+
+  tasks:
+  - name: ping!
+    action: ping

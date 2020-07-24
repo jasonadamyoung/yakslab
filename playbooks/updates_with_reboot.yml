@@ -1,0 +1,32 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - reboot
+
+  tasks:
+   - name: update apt cache
+     apt: update_cache=yes
+
+   - name: run apt upgrade
+     apt: upgrade=full
+
+   - name: slack update announcement
+     become: no
+     become_method: sudo
+     local_action:
+       module: slack
+       domain: outfielding.slack.com
+       msg: ":sunrise_over_mountains: Completed apt updates on {{ ansible_hostname }}"
+       channel: "#sysconfig"
+       token: "T06AWL405/B06E6HNNA/14S78i9cxlajtNQIcoc1kyYg"
+       username: "Ansible on {{ ansible_hostname }}"
+       parse: 'none'
+
+   - name: check if a reboot is required
+     shell: "[ -f /var/run/reboot-required ]"
+     failed_when: False
+     register: reboot_required
+     changed_when: reboot_required.rc == 0
+     notify:
+       - reboot sequence

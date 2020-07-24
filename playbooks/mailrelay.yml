@@ -1,0 +1,7 @@
+- hosts:
+    - monpi.lrvlab.net
+  become: yes
+  become_method: sudo
+  roles:
+    - { role: mailrelay, tags: [ 'mailrelay' ] }
+    - {role: slacker, ansible_task_run: 'Completed configuring the mailrelay for the proxy server',  tags: always}

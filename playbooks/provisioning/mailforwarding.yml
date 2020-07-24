@@ -1,0 +1,6 @@
+- hosts: all,!monpi.lrvlab.net
+  become: yes
+  become_method: sudo
+  roles:
+    - mailforwarding
+    - {role: slacker, ansible_task_run: 'Completed configuring mailforwarding'}

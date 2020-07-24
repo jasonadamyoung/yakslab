@@ -1,0 +1,6 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+   - name: Run apt-get autoremove
+     shell: /usr/bin/apt-get autoremove -y
