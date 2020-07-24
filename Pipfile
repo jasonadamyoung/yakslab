@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+dns-lexicon = "*"
+prettytable = "*"
+pyyaml = "*"
+paramiko = "*"
+prompt-toolkit = "*"
+ascii-graph = "*"
+openshift = "*"
+
+[requires]
+python_version = "3.8"
