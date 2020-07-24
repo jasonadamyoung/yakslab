@@ -1,0 +1,5 @@
+---
+collections:
+  - name: community.kubernetes
+roles:
+  - name: f500.dumpall
