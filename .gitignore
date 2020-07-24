@@ -1,0 +1,19 @@
+# ignore vault secrets
+_secrets/
+
+# ignore retry files
+*.retry
+
+# ignore dumpvars dir
+dumpvars/
+
+# ignore .decrypted vault files
+*.decrypted
+
+# ignore direnv/autoenv config
+.envrc
+.autoenv
+
+# ignore ansible galaxy roles and collections
+roles.galaxy/
+ansible_collections/
