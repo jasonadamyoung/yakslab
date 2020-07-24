@@ -1,0 +1,2 @@
+---
+- { import_tasks: checkup.yml, tags: [ 'checkup' ] }

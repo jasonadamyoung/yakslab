@@ -1,0 +1,58 @@
+---
+- name: Make sure /etc/docker exists
+  file:
+    path: /etc/docker
+    state: directory
+    mode: 0755
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    state: present
+
+- name: Add Docker APT repository
+  apt_repository:
+    repo: deb [arch=amd64] {{ docker_package_host }} {{ansible_distribution_release}} stable
+    state: present
+    update_cache: yes
+
+- name: Install Docker packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+      - 'docker-ce'
+      - 'docker-ce-cli'
+      - 'containerd.io'
+
+- name: Deploy Docker daemon.json.
+  copy:
+    src: files/daemon.json
+    dest: /etc/docker/daemon.json
+  tags:
+    - daemonconfig
+
+- name: Install pip3
+  become: yes
+  apt:
+    pkg:
+      - python3-pip
+    state: present
+
+- name: Install docker and docker-compose pip module
+  pip:
+    name:
+      - docker
+      - docker-compose
+
+# proxy information
+- { include: proxy.yml, tags: [ 'proxy' ], when: (container_proxy_host is defined) }
+
+- name: restart docker and reload systemd configuration
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: docker

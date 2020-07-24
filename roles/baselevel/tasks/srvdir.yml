@@ -1,0 +1,21 @@
+- name: make srv directory
+  file:
+    path: /srv
+    state: directory
+    owner: root
+    group: root
+    mode:  0775
+
+- name: clear extended ACL from /srv
+  command: "setfacl --remove-all /srv"
+
+- name: make srv/scripts directory
+  file:
+    path: /srv/scripts
+    state: directory
+    owner: root
+    group: root
+    mode:  0775
+
+- name: clear extended ACL from /srv/scripts
+  command: "setfacl --remove-all /srv/scripts"

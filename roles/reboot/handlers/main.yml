@@ -1,0 +1,56 @@
+---
+- name: reboot sequence
+  changed_when: "true"
+  debug: msg='trigger machine reboot sequence'
+  notify:
+    - get current time
+    - tell slack we are rebooting
+    - reboot system
+    # - waiting for server to come back
+    - verify a reboot was actually initiated
+    - tell slack the host is back
+- name: get current time
+  command: /bin/date +%s
+  register: before_reboot
+  become: no
+  become_method: sudo
+- name: tell slack we are rebooting
+  ignore_errors: true
+  become: no
+  become_method: sudo
+  local_action:
+    module: slack
+    domain: outfielding.slack.com
+    msg: "Rebooting {{ ansible_ssh_host }} ..."
+    channel: "#sysconfig"
+    token: "T06AWL405/B06E6HNNA/14S78i9cxlajtNQIcoc1kyYg"
+    username: "Ansible on {{ ansible_hostname }}"
+    parse: 'none'
+- name: reboot system
+  reboot:
+# - name: reboot system
+#   shell: sleep 2 && shutdown -r now "Ansible Reboot"
+#   async: 1
+#   poll: 0
+#   ignore_errors: true
+# - name: waiting for server to come back
+#   local_action: wait_for host={{ inventory_hostname }} state=started port=22 delay=10 timeout=220
+#   become: no
+#   become_method: sudo
+- name: verify a reboot was actually initiated
+  # machine should have started after it has been rebooted
+  shell: "expr $(( `date +%s` - `awk -F . '{print $1}' /proc/uptime` > {{ before_reboot.stdout }} ))"
+  become: no
+  become_method: sudo
+- name: tell slack the host is back
+  ignore_errors: true
+  become: no
+  become_method: sudo
+  local_action:
+    module: slack
+    domain: outfielding.slack.com
+    msg: "... {{ ansible_ssh_host }} is now available again"
+    channel: "#sysconfig"
+    token: "T06AWL405/B06E6HNNA/14S78i9cxlajtNQIcoc1kyYg"
+    username: "Ansible on {{ ansible_hostname }}"
+    parse: 'none'

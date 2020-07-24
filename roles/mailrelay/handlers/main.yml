@@ -1,0 +1,14 @@
+---
+- name: restart postfix
+  service:
+    name: postfix
+    state: restarted
+
+- name: run postalias
+  shell: postalias hash:/etc/aliases && newaliases
+
+- name: run postmap
+  shell: /usr/sbin/postmap /etc/postfix/sasl_passwd
+
+- name: run postmap virtual
+  shell: /usr/sbin/postmap /etc/postfix/virtual

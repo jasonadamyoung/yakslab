@@ -1,0 +1,11 @@
+- name: notify slack
+  become: no
+  become_method: sudo
+  local_action:
+    module: slack
+    domain: outfielding.slack.com
+    msg: "{{ ansible_task_run }} on {{ ansible_hostname }}"
+    channel: "#sysconfig"
+    token: "T06AWL405/B06E6HNNA/14S78i9cxlajtNQIcoc1kyYg"
+    username: "Ansible on {{ ansible_hostname }}"
+    parse: 'none'

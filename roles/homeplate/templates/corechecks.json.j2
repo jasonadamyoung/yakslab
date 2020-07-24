@@ -1,0 +1,32 @@
+{
+	"checkers": [
+		{
+			"type": "http",
+			"endpoint_name": "rambleon.org",
+			"endpoint_url": "https://rambleon.org"
+		},
+		{
+			"type": "http",
+			"endpoint_name": "draft.busterleague.org",
+			"endpoint_url": "https://draft.busterleague.org/check"
+		}
+	],
+	"storage":
+		{
+			"provider": "github",
+			"access_token": "{{ checkup_github_token }}",
+			"repository_owner": "jasonadamyoung",
+			"repository_name": "outfieldingstatus",
+			"committer_name": "Checkup",
+			"committer_email": "checkup@outfielding.net",
+			"branch": "master",
+			"dir": "updates"
+		},
+	"notifier":
+		{
+			"name": "slack",
+			"username": "checkup",
+			"channel": "#monitoring",
+			"webhook": "https://hooks.slack.com/services/{{ checkup_slack_token }}"
+		}
+}

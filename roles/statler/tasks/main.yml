@@ -1,0 +1,57 @@
+---
+- include: createaccount.yml
+  when: (create_statler_account is defined and create_statler_account|bool)
+
+- name: create the statler .ssh directory
+  file: 
+    path: /home/statler/.ssh 
+    owner: statler 
+    group: statler 
+    mode: 0700 
+    state: directory
+
+- name: set statler sshkeys
+  import_role:
+    name: sshkeys
+    tasks_from: statler
+
+- name: copy statler ssh config
+  copy:
+    src: "ssh_config"
+    dest: /home/statler/.ssh/config
+    owner: statler
+    group: statler
+    mode: 0600
+
+- name: copy statler profile
+  copy:
+    src: "profile.sh"
+    dest: /home/statler/.profile
+    owner: statler
+    group: statler
+    mode: 0660
+
+- name: copy statler bashrc
+  copy:
+    src: "bashrc.sh"
+    dest: /home/statler/.bashrc
+    owner: statler
+    group: statler
+    mode: 0660
+
+- name: copy statler bash aliases
+  copy:
+    src: "bash_aliases.sh"
+    dest: /home/statler/.bash_aliases
+    owner: statler
+    group: statler
+    mode: 0660
+
+- name: copy statler sudoers information
+  copy:
+    src: "sudoers/statler"
+    dest: /etc/sudoers.d/statler
+    owner: root
+    group: root
+    mode: 0440
+    validate: 'visudo -cf %s'

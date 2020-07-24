@@ -1,0 +1,2 @@
+# provide statler passwordless sudo access
+statler ALL=NOPASSWD: ALL

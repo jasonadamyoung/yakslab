@@ -1,0 +1,24 @@
+---
+- name: CORECHECKS | make /etc/checkup directory
+  file:
+    path: /etc/checkup
+    state: directory
+    owner: root
+    group: root
+    mode: 0770
+
+- name: CORECHECKS | create corechecks configuration
+  template:
+    src: corechecks.json.j2
+    dest: /etc/checkup/corechecks.json
+    owner: root
+    group: root
+    mode: 0640
+
+- name: CORECHECKS | Copy corechecks cron
+  copy:
+    src: "corechecks"
+    dest: /etc/cron.d/corechecks
+    owner: root
+    group: root
+    mode: 0644

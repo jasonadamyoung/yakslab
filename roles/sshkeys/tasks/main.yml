@@ -1,0 +1,5 @@
+- name: Get account list
+  getent:
+    database: passwd
+
+- { include: statler.yml, tags: [ 'statler' ], when: (getent_passwd.statler is defined) }

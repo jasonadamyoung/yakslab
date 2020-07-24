@@ -1,0 +1,6 @@
+---
+- include: prereq.yml
+- include: download.yml
+- { include: proxy.yml, tags: [ 'proxy' ], when: (container_proxy_host is defined) }
+- { include: server.yml,  when: (k3s_role != 'agent') }
+- { include: agent.yml,   when: (k3s_role == 'agent') }

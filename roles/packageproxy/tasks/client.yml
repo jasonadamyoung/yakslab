@@ -1,0 +1,9 @@
+---
+- name: Set up apt proxy host
+  template:
+    src: apt_00proxy.j2
+    dest: /etc/apt/apt.conf.d/00proxy
+    mode: 0644
+  when: (apt_proxy_host is defined)
+
+

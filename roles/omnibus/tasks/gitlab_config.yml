@@ -1,0 +1,28 @@
+---
+- name: GITLAB.RB | application server settings
+  template:
+    src: gitlab_rb_conf/application.rb.j2
+    dest: /etc/gitlab/conf.d/application.rb
+    owner: root
+    group: root
+    mode: 0600
+
+- name: GITLAB.RB | Set SMTP Settings for MailHog
+  template:
+    src: gitlab_rb_conf/mailhog_smtp.rb.j2
+    dest: /etc/gitlab/conf.d/mailhog_smtp.rb
+    owner: root
+    group: root
+    mode: 0600
+  when: (gitlab_use_mailhog|bool|default(true))
+
+- name: GITLAB.RB | Assemble! gitlab.rb
+  assemble:
+    src: /etc/gitlab/conf.d/
+    dest: /etc/gitlab/gitlab.rb
+
+
+# TODO
+# gitlab_rails['initial_license_file'] = '/etc/gitlab/company.gitlab-license'
+
+

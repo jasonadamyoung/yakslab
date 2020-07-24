@@ -1,0 +1,13 @@
+---
+- name: Install acl support
+  apt: pkg=acl state=present
+
+- name: copy replacement fstab
+  copy:
+    src: "fstab"
+    dest: /etc/fstab
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  notify: reboot sequence

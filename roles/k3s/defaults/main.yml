@@ -1,0 +1,3 @@
+---
+  systemd_dir: /etc/systemd/system
+  extra_server_args: "--no-deploy traefik --write-kubeconfig-mode 664"

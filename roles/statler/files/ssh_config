@@ -1,0 +1,6 @@
+HashKnownHosts no
+Host *
+	ServerAliveInterval 120
+	ServerAliveCountMax 3
+Host *.outfielding.net
+  ForwardAgent yes

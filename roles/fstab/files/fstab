@@ -1,0 +1,2 @@
+LABEL=cloudimg-rootfs	/	 ext4	noatime,acl,errors=remount-ro	0 0
+LABEL=UEFI	/boot/efi	vfat	defaults	0 0

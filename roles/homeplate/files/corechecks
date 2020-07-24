@@ -1,0 +1,3 @@
+# cron.d task for corechecks
+# m h dom mon dow user	command
+*/5 *   * * *   root    /usr/local/bin/checkup --config /etc/checkup/corechecks.json --store

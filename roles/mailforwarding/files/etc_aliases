@@ -1,0 +1,11 @@
+# /etc/aliases
+mailer-daemon: postmaster
+postmaster: root
+nobody: root
+webmaster: root
+clamav: root
+pacecar: root
+waldorf: root
+scout: root
+exbackup: root
+root: root@outfielding.net

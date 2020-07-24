@@ -1,0 +1,6 @@
+---
+always_allowed:
+  - me
+allowed_systems_accounts:
+  - me
+create_statler_account: false

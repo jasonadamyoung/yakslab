@@ -1,0 +1,19 @@
+---
+- name: create the statler group
+  group: 
+    name: statler 
+    gid: '4242' 
+    state: present
+
+- name: create the statler user
+  user: 
+    name: statler 
+    comment: "Systems Administration" 
+    uid: '4242' 
+    group: statler 
+    home: /home/statler 
+    createhome: yes 
+    password: '*'
+    update_password: always 
+    shell: /bin/bash 
+    state: present

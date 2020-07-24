@@ -1,0 +1,75 @@
+- name: DBSERVER | CORE | install mysql packages
+  apt:
+    state: present
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - mysql-client
+    - mysql-server
+    - python-mysqldb
+    - percona-toolkit
+    - mysqltuner
+    - libmysqlclient-dev
+    - python3-pymysql
+    - mycli
+
+- name: DBSERVER | CORE | ensure mysql is running
+  service:
+    name: mysql
+    state: started
+
+# security settings
+- name: Get list of hosts for the root user.
+  command: mysql -NBe
+    "SELECT Host
+    FROM mysql.user
+    WHERE User = 'root'
+    ORDER BY (Host='localhost') ASC"
+  register: mysql_root_hosts
+  changed_when: false
+  check_mode: false
+
+- name: Update MySQL root password for localhost root account (5.7.x).
+  shell: >
+    mysql -u root -NBe
+    'ALTER USER root@"{{ item }}"
+    IDENTIFIED WITH mysql_native_password BY "{{ mysql_root_password }}";'
+  with_items: "{{ mysql_root_hosts.stdout_lines|default([]) }}"
+
+- name: configure mysql for easy access by root
+  template:
+    src: client.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: 0600
+
+# security settings
+- name: DBSERVER | CORE | set the mysql privileges
+  mysql_user:
+    user: root
+    host: "{{item}}"
+    password: "{{mysql_root_password}}"
+    priv: "*.*:ALL,GRANT"
+  with_items: "{{ mysql_root_hosts.stdout_lines|default([]) }}"
+  ignore_errors: yes
+
+- name: DBSERVER | CORE | make sure root has proper privileges
+  shell: mysql -e "UPDATE mysql.user SET Grant_priv='Y', Super_priv='Y' WHERE User='root'; FLUSH PRIVILEGES;"
+  ignore_errors: true
+
+- name: DBSERVER | CORE | remove anonymous MySQL server user
+  mysql_user:
+    login_user: root
+    login_password: "{{mysql_root_password}}"
+    name: ""
+    host: "{{item}}"
+    state: absent
+  with_items:
+    - localhost
+
+- name: DBSERVER | CORE | remove the MySQL test database
+  mysql_db:
+    name: test
+    state: absent
+

@@ -1,0 +1,30 @@
+---
+- name: OMNIBUS | SETUP | Make sure /etc/gitlab exists
+  file:
+    path: /etc/gitlab
+    state: directory
+    mode: 0755
+
+- name: OMNIBUS | SETUP | Create gitlab.rb fragments directory
+  file:
+    path: /etc/gitlab/conf.d
+    state: directory
+    mode: 0700
+
+- name: OMNIBUS | SETUP | Skip running reconfigure on install
+  file:
+    path: /etc/gitlab/skip-auto-reconfigure
+    state: touch
+    mode: 0755
+
+- { include: apt_package.yml }
+- { include: gitlab_config.yml }
+
+- name: Reconfigure GitLab (first run).
+  command:
+    cmd: gitlab-ctl reconfigure
+    creates: /var/opt/gitlab/bootstrapped
+  failed_when: false
+
+- { include: initial_rails_settings.yml }
+

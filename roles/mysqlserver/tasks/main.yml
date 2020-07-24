@@ -1,0 +1,29 @@
+- name: DBSERVER | MAIN | make /etc/mysql directory
+  file:
+    path: /etc/mysql
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: DBSERVER | MAIN | make /etc/mysql/mysql.conf.d directory
+  file:
+    path: /etc/mysql/mysql.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: DBSERVER | MAIN | copy mysql.cnf
+  template:
+    src: mysqld.cnf.j2
+    dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart mysql
+
+- include: core.yml
+- include: master.yml
+- include: backups.yml
+

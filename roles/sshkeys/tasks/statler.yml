@@ -1,0 +1,26 @@
+- name: Get account list
+  getent:
+    database: passwd
+
+- name: Add statler always allowed account keys (double run allows exclusivity)
+  authorized_key:
+    user: statler
+    exclusive: yes
+    key: "{{ lookup('file', 'public_keys/' + item) }}"
+  loop: '{{statler_always_allowed_keys}}'
+
+- name: Add statler allowed account keys on bastion
+  authorized_key:
+    user: statler
+    key: "{{ lookup('file', 'public_keys/' + item,  errors='ignore') }}"
+  with_items:
+    '{{statler_bastion_allowed_keys | default([])}}'
+  when: (item != '' and 'bastion' in group_names)
+
+- name: Add statler allowed account keys
+  authorized_key:
+    user: statler
+    key: "{{ lookup('file', 'public_keys/' + item,  errors='ignore') }}"
+  with_items:
+    '{{statler_allowed_keys | default([])}}'
+  when: (item != '' and 'bastion' not in group_names)

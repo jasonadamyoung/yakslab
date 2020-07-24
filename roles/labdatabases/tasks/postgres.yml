@@ -1,0 +1,14 @@
+- name: POSTGRES | Create Databases
+  postgresql_db:
+    name: "{{ item.key }}"
+    state: present
+  with_dict: "{{ pgdatabaselist }}"
+
+- name: POSTGRES | Create Database Users
+  postgresql_user:
+    db: "{{ item.key }}"
+    name: "{{ item.key }}"
+    password: "{{ item.value.password }}"
+    priv: "ALL"
+    state: present
+  with_dict: "{{ pgdatabaselist }}"
