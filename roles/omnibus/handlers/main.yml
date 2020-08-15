@@ -1,5 +1,0 @@
----
-- name: reconfigure gitlab
-  command: gitlab-ctl reconfigure
-  register: gitlab_reconfigure
-  failed_when: gitlab_reconfigure_handler_failed_when | bool

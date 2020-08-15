@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: 'mailhog', when: (gitlab_use_mailhog|bool|default(true)) }
