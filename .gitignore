@@ -1,8 +1,14 @@
 # ignore vault secrets
 _secrets/
 
+# ignore scratchpad dir
+scratchpad/
+
 # ignore various certificates
 certificates/
+
+# ignore cluster subdirs for now
+clusters/*
 
 # ignore retry files
 *.retry
@@ -20,3 +26,6 @@ dumpvars/
 # ignore ansible galaxy roles and collections
 roles.galaxy/
 ansible_collections/
+
+# ignore host dir
+hosts/
