@@ -1,4 +1,9 @@
 ---
+- name: Make sure apt is setup for external repositories
+  import_role:
+    name: aptprep
+    tasks_from: main.yml
+
 - name: Make sure /etc/docker exists
   file:
     path: /etc/docker
@@ -56,3 +61,9 @@
     state: restarted
     daemon_reload: yes
     name: docker
+
+- name: Ensure docker users are added to the docker group.
+  user:
+    name: "{{ ansible_ssh_user }}"
+    groups: docker
+    append: true
