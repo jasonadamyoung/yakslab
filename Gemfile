@@ -13,8 +13,5 @@ gem 'sys-uname'
 # ansible-vault integration
 gem 'ansible-vault'
 
-# slack integration
-gem "slack-notifier"
-
 # development
 gem 'pry'
