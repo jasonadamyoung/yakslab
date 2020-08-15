@@ -4,8 +4,8 @@ require 'rap'
 module Rap
   class CLI < Thor
     include Thor::Actions
-    class_option :quiet,:default => false, :desc => "If true, Don't echo the command to stdout"
-    class_option :dryrun,:default => false, :desc => "If true, echo the command that would be run to stdout"
+    class_option :quiet, :type => :boolean, :default => false, :desc => "If true, Don't echo the command to stdout"
+    class_option :dryrun, :type => :boolean, :default => false, :desc => "If true, echo the command that would be run to stdout"
     class_option :verbosity, :type => :numeric, :default => 0, :desc => "ansible-playbook verbosity (0=none,1=-v,2=-vv,3=-vvv,4=-vvvv)"
     # these are not the tasks that you seek
     def self.source_root
@@ -71,6 +71,7 @@ module Rap
     desc "update HOST(s)", "Run updates against the specified host or host group "
     method_option :no_reboot,:default => false, :desc => "Run updates only. Do not reboot the host(s)."
     def update(limitto)
+    method_option :no_reboot, :type => :boolean, :default => false, :desc => "Run updates only. Do not reboot the host(s)."
       playbook_options = ["--limit=#{limitto}"]
       if(options[:no_reboot])
         playbook = 'playbooks/updates/updates_only.yml'
@@ -119,8 +120,8 @@ module Rap
 
     # dehydrated tasks
     desc "renewcerts", "Use dehydrated and the digitalocean dehydrated hook script to renew SSL certificates"
-    method_option :force,:default => false, :desc => "Force renewal even if it isn't time yet to do so"
-    method_option :cleanup,:default => true, :desc => "Cleanup old scripts afterward (dehydrated --cleanup)"
+    method_option :force, :type => :boolean, :default => false, :desc => "Force renewal even if it isn't time yet to do so"
+    method_option :cleanup, :type => :boolean, :default => true, :desc => "Cleanup old scripts afterward (dehydrated --cleanup)"
     def renewcerts
       dehydrated = Rap::Dehydrated.new(force: options[:force],
                                                quiet: options[:quiet],
@@ -135,7 +136,7 @@ module Rap
 
     # vault tasks
     desc "encryptvault VAULTFILE", "Use ansible-vault to encrypt a decrypted vault file and save it as VAULTFILE (specify all to encrypt all found vault files)"
-    method_option :force,:default => false, :desc => "Force encryption even if the encrypted file is newer"
+    method_option :force, :type => :boolean, :default => false, :desc => "Force encryption even if the encrypted file is newer"
     def encryptvault(vaultfile)
       if(vaultfile == 'all')
         vaultfiles = Rap::Vault.find_all_vault_files
@@ -152,7 +153,7 @@ module Rap
     end
 
     desc "decryptvault VAULTFILE", "Use ansible-vault to decrypt VAULTFILE into a decrypted vault file (specify all to decrypt all found vault files)"
-    method_option :force,:default => false, :desc => "Force decryption even if the decrypted file is newer"
+    method_option :force, :type => :boolean, :default => false, :desc => "Force decryption even if the decrypted file is newer"
     def decryptvault(vaultfile)
       if(vaultfile == 'all')
         vaultfiles = Rap::Vault.find_all_vault_files
