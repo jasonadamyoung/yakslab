@@ -1,6 +1,9 @@
 # ignore vault secrets
 _secrets/
 
+# ignore various certificates
+certificates/
+
 # ignore retry files
 *.retry
 
