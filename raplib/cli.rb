@@ -98,7 +98,7 @@ module Rap
     desc "ping", "Runs an ansible ping playbook"
     def ping
       playbook_options = verbosity_limits_and_tags(options)
-      playbook = 'playbooks/utilities/ping.yml'
+      playbook = 'playbooks/ping.yml'
       aplay = Rap::Aplay.new(playbook_options: playbook_options,
                                      playbook: playbook,
                                      quiet: options[:quiet],
@@ -108,7 +108,7 @@ module Rap
 
     desc "rekey  HOST(s)", "Run the sshkeys playbook to rekey host or host group"
     def rekey(limitto)
-      playbook = "playbooks/utilities/sshkeys.yml"
+      playbook = "playbooks/sshkeys.yml"
       playbook_options = ["--limit=#{limitto}"]
       aplay = Rap::Aplay.new(playbook_options: playbook_options,
                                      playbook: playbook,
