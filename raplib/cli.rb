@@ -68,15 +68,14 @@ module Rap
 
     end
 
-    desc "update HOST(s)", "Run updates against the specified host or host group "
-    method_option :no_reboot,:default => false, :desc => "Run updates only. Do not reboot the host(s)."
-    def update(limitto)
+    desc "up HOST(s)", "Run updates against the specified host or host group "
     method_option :no_reboot, :type => :boolean, :default => false, :desc => "Run updates only. Do not reboot the host(s)."
+    def up(limitto)
       playbook_options = ["--limit=#{limitto}"]
       if(options[:no_reboot])
-        playbook = 'playbooks/updates/updates_only.yml'
+        playbook = 'playbooks/updates_only.yml'
       else
-        playbook = 'playbooks/updates/updates_with_reboot.yml'
+        playbook = 'playbooks/updates_with_reboot.yml'
       end
       aplay = Rap::Aplay.new(playbook_options: playbook_options,
                                      playbook: playbook,
