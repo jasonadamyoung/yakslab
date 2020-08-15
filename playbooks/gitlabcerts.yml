@@ -1,0 +1,5 @@
+- hosts: gitlab.lrvlab.net
+  become: yes
+  become_method: sudo
+  roles:
+    - gitlabcerts

@@ -1,0 +1,5 @@
+---
+# ssl defaults
+ssl_cert_file:  "cert.pem"
+ssl_key_file:   "privkey.pem"
+ssl_chain_file: "chain.pem"

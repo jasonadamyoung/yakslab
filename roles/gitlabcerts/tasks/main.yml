@@ -1,0 +1,27 @@
+---
+- name: copy certs
+  copy:
+    src: "certs/{{ item.cert}}/fullchain.pem"
+    dest: "/etc/gitlab/ssl/{{item.name}}.crt"
+    owner: root
+    group: root
+    mode: 0640
+  loop: "{{ gitlab_cert_list|flatten(levels=1) }}"
+
+
+- name: copy keys
+  copy:
+    src: "certs/{{ item.cert}}/privkey.pem"
+    dest: "/etc/gitlab/ssl/{{item.name}}.key"
+    owner: root
+    group: root
+    mode: 0640
+  loop: "{{ gitlab_cert_list|flatten(levels=1) }}"
+
+- name: Reconfigure GitLab
+  command:
+    cmd: "/usr/bin/gitlab-ctl reconfigure"
+
+- name: Restart nginx
+  command:
+    cmd: "/usr/bin/gitlab-ctl restart nginx"
