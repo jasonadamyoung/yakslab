@@ -3,7 +3,6 @@
   become_method: sudo
   roles:
     - statler
-    - {role: slacker, ansible_task_run: 'Completed statler configuration'}
 
 # baselevel
 - hosts: all
@@ -11,7 +10,6 @@
   become_method: sudo
   roles:
     - baselevel
-    - {role: slacker, ansible_task_run: 'Completed baselevel host configuration'}
 
 # updates
 - hosts: all
@@ -27,18 +25,6 @@
    - name: run apt upgrade
      apt: upgrade=full
 
-   - name: slack update announcement
-     become: no
-     become_method: sudo
-     local_action:
-       module: slack
-       domain: outfielding.slack.com
-       msg: ":sunrise_over_mountains: Completed apt updates on {{ ansible_hostname }}"
-       channel: "#sysconfig"
-       token: "T06AWL405/B06E6HNNA/14S78i9cxlajtNQIcoc1kyYg"
-       username: "Ansible on {{ ansible_hostname }}"
-       parse: 'none'
-
    - name: check if a reboot is required
      shell: "[ -f /var/run/reboot-required ]"
      failed_when: False
@@ -53,4 +39,3 @@
   become_method: sudo
   roles:
     - mailforwarding
-    - {role: slacker, ansible_task_run: 'Completed configuring mailforwarding'}

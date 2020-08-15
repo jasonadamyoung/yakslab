@@ -6,4 +6,3 @@
     - { role: mysqlserver, tags: [ 'mysqlserver' ] }
     - { role: pgserver, tags: [ 'pgserver' ] }
     - { role: labdatabases, tags: [ 'labdatabases' ] }
-    - {role: slacker, ansible_task_run: 'Completed configuring the labdb server',  tags: always}

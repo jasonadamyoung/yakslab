@@ -3,4 +3,3 @@
   become_method: sudo
   roles:
     - statler
-    - {role: slacker, ansible_task_run: 'Completed statler configuration'}

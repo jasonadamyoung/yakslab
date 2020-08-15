@@ -3,4 +3,3 @@
   become_method: sudo
   roles:
     - docker
-    - {role: slacker, ansible_task_run: 'Completed docker installation'}

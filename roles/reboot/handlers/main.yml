@@ -14,18 +14,6 @@
   register: before_reboot
   become: no
   become_method: sudo
-- name: tell slack we are rebooting
-  ignore_errors: true
-  become: no
-  become_method: sudo
-  local_action:
-    module: slack
-    domain: outfielding.slack.com
-    msg: "Rebooting {{ ansible_ssh_host }} ..."
-    channel: "#sysconfig"
-    token: "T06AWL405/B06E6HNNA/14S78i9cxlajtNQIcoc1kyYg"
-    username: "Ansible on {{ ansible_hostname }}"
-    parse: 'none'
 - name: reboot system
   reboot:
 # - name: reboot system
@@ -42,15 +30,3 @@
   shell: "expr $(( `date +%s` - `awk -F . '{print $1}' /proc/uptime` > {{ before_reboot.stdout }} ))"
   become: no
   become_method: sudo
-- name: tell slack the host is back
-  ignore_errors: true
-  become: no
-  become_method: sudo
-  local_action:
-    module: slack
-    domain: outfielding.slack.com
-    msg: "... {{ ansible_ssh_host }} is now available again"
-    channel: "#sysconfig"
-    token: "T06AWL405/B06E6HNNA/14S78i9cxlajtNQIcoc1kyYg"
-    username: "Ansible on {{ ansible_hostname }}"
-    parse: 'none'

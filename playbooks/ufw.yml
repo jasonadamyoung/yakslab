@@ -3,4 +3,3 @@
   become_method: sudo
   roles:
     - ufw
-    - {role: slacker, ansible_task_run: 'Completed ufw configuration'}

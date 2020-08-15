@@ -3,4 +3,3 @@
   become_method: sudo
   roles:
     - mailforwarding
-    - {role: slacker, ansible_task_run: 'Completed configuring mailforwarding'}
