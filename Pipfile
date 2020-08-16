@@ -13,6 +13,8 @@ paramiko = "*"
 prompt-toolkit = "*"
 ascii-graph = "*"
 openshift = "*"
+requests = "*"
+ansible = "*"
 
 [requires]
 python_version = "3.8"
