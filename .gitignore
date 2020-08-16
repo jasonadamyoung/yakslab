@@ -29,3 +29,6 @@ ansible_collections/
 
 # ignore host dir
 hosts/
+
+# ignore cache files
+*.cache
