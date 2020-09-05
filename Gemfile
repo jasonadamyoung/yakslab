@@ -13,5 +13,14 @@ gem 'sys-uname'
 # ansible-vault integration
 gem 'ansible-vault'
 
+# digital ocean (dns) integration
+gem 'droplet_kit'
+
+# scp access
+gem 'net-ssh'
+gem 'net-scp'
+gem 'ed25519', '>= 1.2', '< 2.0'
+gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
+
 # development
 gem 'pry'
