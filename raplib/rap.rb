@@ -4,6 +4,7 @@ require 'rap/aplay'
 require 'rap/utils'
 require 'rap/vault'
 require 'rap/dehydrated'
+require 'rap/homelab'
 
 module Rap
   class RapError < StandardError; end
