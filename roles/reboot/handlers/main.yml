@@ -4,11 +4,9 @@
   debug: msg='trigger machine reboot sequence'
   notify:
     - get current time
-    - tell slack we are rebooting
     - reboot system
     # - waiting for server to come back
     - verify a reboot was actually initiated
-    - tell slack the host is back
 - name: get current time
   command: /bin/date +%s
   register: before_reboot
