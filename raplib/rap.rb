@@ -12,6 +12,9 @@ module Rap
   def self.settings
     if(@settings.nil?)
       @settings = Rap::Options.new
+      check_for_settings = File.expand_path("../../.rap-settings.yml", __FILE__)
+      settings_file = File.exist?(check_for_settings) ? check_for_settings : nil
+      @settings.files = settings_file
       @settings.load!
       @settings
     end

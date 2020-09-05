@@ -34,7 +34,7 @@ module Rap
 
     def files
       if(@files.nil? or @files.empty?)
-        @files = ["#{File.join(File.dirname(__FILE__), "defaults.yml").to_s}","./raplib/settings.yml"]
+        @files = ["#{File.join(File.dirname(__FILE__), "defaults.yml").to_s}"]
       end
       @files
     end
