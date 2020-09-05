@@ -1,4 +1,4 @@
-- hosts: gitlab.lrvlab.net
+- hosts: gitlab
   become: yes
   become_method: sudo
   roles:
