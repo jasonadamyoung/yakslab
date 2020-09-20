@@ -33,5 +33,9 @@ hosts/
 # ignore rap settings
 .rap-settings.yml
 
+# ignore pry_history
+.pry_history
+
+
 # ignore cache files
 *.cache
