@@ -1,1 +1,1 @@
-Acquire::http::Proxy "http://proxy.lrvlab.net:3142";
+Acquire::http::Proxy "http://{{ apt_proxy_host }}:3142";
