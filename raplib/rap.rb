@@ -5,6 +5,8 @@ require 'rap/utils'
 require 'rap/vault'
 require 'rap/dehydrated'
 require 'rap/homelab'
+require 'rap/k3s_tools.rb'
+
 
 module Rap
   class RapError < StandardError; end
