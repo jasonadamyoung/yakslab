@@ -20,7 +20,7 @@ module Rap
           next if(release.prerelease and ignore_preleases)
           if(matches = release.name.match(K3S_VERSION_REGEX))
             k3s_version = Gem::Version.new(matches[:version])
-            release_hash = {name: release.name, version: k3s_version, release: release}
+            release_hash = OpenStruct.new(name: release.name, version: k3s_version, release: release)
             (k3s_major,k3s_minor,k3s_patch) = k3s_version.segments
             @release_groups[k3s_major] = {} if(!@release_groups[k3s_major])
 
@@ -50,6 +50,15 @@ module Rap
         end
       end
       @latest_releases
+    end
+
+    def k3s_download_url_for_release(release:, asset_name: 'k3s')
+      release[:assets].each do |asset|
+        if(asset[:name] == asset_name)
+          return asset[:browser_download_url]
+        end
+      end
+      nil
     end
 
 
