@@ -25,7 +25,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    droplet_kit (3.9.0)
+    down (5.2.0)
+      addressable (~> 2.5)
+    droplet_kit (3.10.0)
       faraday (>= 0.15)
       kartograph (~> 0.2.3)
       resource_kit (~> 0.1.5)
@@ -136,6 +138,7 @@ PLATFORMS
 DEPENDENCIES
   ansible-vault
   bcrypt_pbkdf (>= 1.0, < 2.0)
+  down (~> 5.0)
   droplet_kit
   ed25519 (>= 1.2, < 2.0)
   inifile

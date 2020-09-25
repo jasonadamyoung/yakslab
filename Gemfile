@@ -37,5 +37,9 @@ gem 'octokit'
 # mac address lookup
 gem 'louis'
 
+# file download support
+gem "down", "~> 5.0"
+
+
 # development
 gem 'pry'
