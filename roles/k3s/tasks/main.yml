@@ -1,6 +1,11 @@
 ---
+- name: Set up local server token file
+  set_fact:
+    local_k3s_token_file:  "{{ local_clusters_path }}/k3s-token-{{ k3s_server_ip }}"
+
 - include: prereq.yml
 - include: download.yml
 - { include: proxy.yml, tags: [ 'proxy' ], when: (container_proxy_host is defined) }
-- { include: server.yml,  when: (k3s_role != 'agent') }
+- { include: server.yml,  when: (k3s_role == 'server') }
 - { include: agent.yml,   when: (k3s_role == 'agent') }
+- { include: kubeconfig.yml, tags: [ 'kubeconfig' ], when: (k3s_role == 'server') }

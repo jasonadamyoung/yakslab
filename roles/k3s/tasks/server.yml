@@ -1,4 +1,22 @@
 ---
+- name: set extra_server_args
+  set_fact:
+    extra_server_args: >
+         {%- set argslist = ["--node-ip {{ k3s_server_ip }}"] %}
+         {%- for arg in extra_server_args|default([]) %}
+         {%-  set argslist = argslist.append( arg ) %}
+         {%- endfor %}
+         {{- argslist -}}
+
+- name: set extra_server_args - no traefik
+  set_fact:
+    extra_server_args: >
+         {%- set argslist = ["--no-deploy traefik"] %}
+         {%- for arg in extra_server_args|default([]) %}
+         {%-  set argslist = argslist.append( arg ) %}
+         {%- endfor %}
+         {{- argslist -}}
+  when: (k3s_no_traefik|default(true))
 
 - name: Copy K3s service file
   register: k3s_service
@@ -34,6 +52,13 @@
   slurp:
     src: /var/lib/rancher/k3s/server/node-token
   register: node_token
+
+- name: KUBECONFIG | Store server node-token locally
+  copy:
+    content: "{{ node_token.content }}"
+    dest: "{{ local_k3s_token_file }}"
+  delegate_to: localhost
+  become: no
 
 - name: Store server node-token
   set_fact:

@@ -1,4 +1,16 @@
 ---
+- name: set extra_agent_args
+  set_fact:
+    extra_agent_args: >
+         {%- set argslist = ["--node-ip {{ k3s_agent_ip }}"] %}
+         {%- for arg in extra_agent_args|default([]) %}
+         {%-  set argslist = argslist.append( arg ) %}
+         {%- endfor %}
+         {{- argslist -}}
+
+- name: Get the k3s server token
+  set_fact:
+    k3s_server_token: "{{ lookup('file', local_k3s_token_file) | b64decode | regex_replace('\n', '') }}"
 
 - name: Copy K3s service file
   template:
