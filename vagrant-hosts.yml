@@ -1,0 +1,15 @@
+---
+defaults:
+  vagrant_domain: ".gldev"
+  group: standalone_latest
+  network: private_network
+  memory: 4096
+  cpu: 4
+  box: bento/ubuntu-18.04
+
+standalone_latest:
+  - gitlab: 13.4.1
+standalone_12:
+  - gitlab: 12.10.14
+k3s_cluster:
+  - k3s_cluster: 1.16.15
