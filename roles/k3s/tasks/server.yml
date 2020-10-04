@@ -16,7 +16,7 @@
          {%-  set argslist = argslist.append( arg ) %}
          {%- endfor %}
          {{- argslist -}}
-  when: (k3s_no_traefik|default(true))
+  when: (k3s_no_traefik|default(false))
 
 - name: Copy K3s service file
   register: k3s_service
