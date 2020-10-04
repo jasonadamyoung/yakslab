@@ -34,19 +34,24 @@ class VagrantHostsMaker
       gitlab_host(gitlab_values: values)
     when 'k3s_cluster'
       k3s_cluster(cluster_values: values)
-    when 'standalone'
-      standalone_host(host_values: values)
+    when 'single'
+      single_host(host_values: values)
     end
 
   end
 
-  def standalone_host(host_values:)
+  def single_host(host_values:)
     # standalone generic host
     box_settings = {}
     provisioner_settings = {}
 
     # box settings
-    ["name", "network", "memory", "cpu", "box"].each do |setting|
+    if host_values["name"].nil?
+      raise VagrantError, "A host name for the generic single host is required."
+    end
+
+    box_settings["name"] = host_values["name"]
+    ["network", "memory", "cpu", "box"].each do |setting|
       box_settings[setting] = host_values[setting] || @defaults[setting]
     end
     box_settings["ip_address"] = get_available_ip_address(host_name: box_settings["name"])
@@ -99,8 +104,10 @@ class VagrantHostsMaker
     server_host["box_settings"]["ip_address"] = get_available_ip_address(host_name: server_host["box_settings"]["name"])
 
     # provisioner settings
-    server_host["provisioner_settings"]['k3s_server_ip']       = server_host["box_settings"]["ip_address"]
-    server_host["provisioner_settings"]['k3s_version']         = service_version
+    server_host["provisioner_settings"]['k3s_server_ip'] = server_host["box_settings"]["ip_address"]
+    server_host["provisioner_settings"]['k3s_version']   = service_version
+    server_host["provisioner_settings"]['k3s_role']      = "server"
+
     merge_settings = k3s_cluster_values["server_provisioner_settings"] || {}
     server_host["provisioner_settings"].merge!(merge_settings)
     cluster_hosts << server_host
@@ -117,8 +124,11 @@ class VagrantHostsMaker
       box_settings["ip_address"] = get_available_ip_address(host_name: box_settings["name"])
 
       # provisioner settings
-      provisioner_settings['k3s_server_ip']       = server_host["box_settings"]["ip_address"]
-      provisioner_settings['k3s_version']         = service_version
+      provisioner_settings['k3s_server_ip'] = server_host["box_settings"]["ip_address"]
+      provisioner_settings['k3s_agent_ip'] = box_settings["ip_address"]
+      provisioner_settings['k3s_version']   = service_version
+      provisioner_settings['k3s_role']      = 'agent'
+
       merge_settings = k3s_cluster_values["agent_provisioner_settings"] || {}
       provisioner_settings.merge!(merge_settings)
       cluster_hosts << {"box_settings" => box_settings, "provisioner_settings" => provisioner_settings}
