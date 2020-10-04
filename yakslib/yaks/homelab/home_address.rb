@@ -1,12 +1,12 @@
 require "net/http"
 require 'ipaddr'
 
-module Rap
+module Yaks
   module Homelab
     class HomeAddress
 
       def initialize()
-        @home_domain_dns = Rap::Homelab::Dns.new
+        @home_domain_dns = Yaks::Homelab::Dns.new
         home_ip
       end
 

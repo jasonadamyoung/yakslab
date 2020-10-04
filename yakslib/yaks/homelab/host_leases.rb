@@ -3,7 +3,7 @@ require 'date'
 require 'net/scp'
 require 'louis'
 
-module Rap
+module Yaks
   module Homelab
     class HostLeases
 

@@ -2,7 +2,7 @@ require 'ostruct'
 require 'yaml'
 require 'erb'
 
-module Rap
+module Yaks
   module Sources
     class YAMLSource
 
@@ -34,7 +34,7 @@ module Rap
 
     def files
       if(@files.nil? or @files.empty?)
-        @files = ["#{File.join(File.dirname(__FILE__), "defaults.yml").to_s}"]
+        @files = ["#{File.join(File.dirname(__FILE__), "defaults.yml").to_s}",File.expand_path("./.yaks.yml")]
       end
       @files
     end

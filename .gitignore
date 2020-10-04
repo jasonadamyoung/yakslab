@@ -30,8 +30,8 @@ ansible_collections/
 # ignore host dir
 hosts/
 
-# ignore rap settings
-.rap-settings.yml
+# ignore yaks tool settings
+.yaks.yml
 
 # ignore pry_history
 .pry_history

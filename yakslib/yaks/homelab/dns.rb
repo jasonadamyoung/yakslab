@@ -2,7 +2,7 @@ require "net/http"
 require 'ipaddr'
 require "droplet_kit"
 
-module Rap
+module Yaks
   module Homelab
     class Dns
 

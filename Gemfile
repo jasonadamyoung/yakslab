@@ -7,9 +7,6 @@ gem 'thor'
 # inifile support
 gem 'inifile'
 
-# system information
-gem 'sys-uname'
-
 # ansible-vault integration
 gem 'ansible-vault'
 
@@ -40,6 +37,11 @@ gem 'louis'
 # file download support
 gem "down", "~> 5.0"
 
+# tty library tools
+gem 'tty-command'
+gem 'tty-logger'
+gem 'tty-spinner'
+gem 'tty-prompt'
 
 # development
 gem 'pry'
