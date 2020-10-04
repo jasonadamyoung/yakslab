@@ -38,6 +38,7 @@ hosts/
 
 # ignore vagrant output
 .vagrant
+
 # ignore vagrant hosts maker files
 .vagrant_hostip_cache.yml
 .vagrant_gitlab_versions.yml
