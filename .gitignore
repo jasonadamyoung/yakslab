@@ -43,5 +43,8 @@ hosts/
 .vagrant_hostip_cache.yml
 .vagrant_gitlab_versions.yml
 
+# ignore apicache dir
+apicache/*
+
 # ignore cache files
 *.cache
