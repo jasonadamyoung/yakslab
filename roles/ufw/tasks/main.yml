@@ -4,15 +4,6 @@
 - name: reset ufw
   ufw: state=reset
 
-- name: copy webserver before rules
-  copy:
-    src: before.rules.webservers
-    dest: /etc/ufw/before.rules
-    owner: root
-    group: root
-    mode: 0640
-  when: "'webservers' in group_names"
-
 - name: open SSH port
   ufw: rule=allow name=OpenSSH
 

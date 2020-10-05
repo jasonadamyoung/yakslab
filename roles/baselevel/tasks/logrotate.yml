@@ -1,12 +1,4 @@
 - name: Make sure logrotate is installed
-  apt: 
-    name: logrotate 
+  apt:
+    name: logrotate
     state: present
-
-- name: copy logrotate.conf
-  template:
-    src: logrotate/logrotate.conf.j2
-    dest: /etc/logrotate.conf
-    owner: root
-    group: root
-    mode: 0644

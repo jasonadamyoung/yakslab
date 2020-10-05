@@ -3,4 +3,3 @@
 - include: corepackages.yml
 - include: aptupdates.yml
 - include: logrotate.yml
-- include: srvdir.yml
