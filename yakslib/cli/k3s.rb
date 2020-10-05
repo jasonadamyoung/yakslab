@@ -8,6 +8,11 @@ module YaksCLI
       require_relative '../commands/k3s/download'
       Yaks::Commands::K3s::Download.new(version: release_version, options: options).🚀
     end
+    desc "latest", "Latest K3s Release Information"
+    def latest
+      require_relative '../commands/k3s/latest'
+      Yaks::Commands::K3s::Latest.new(options: options).🚀
+    end
 
   end
 end

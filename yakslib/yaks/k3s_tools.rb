@@ -44,7 +44,7 @@ module Yaks
     def get_k3s_latest_releases(ignore_preleases: true)
       release_information = {}
       k3s_latest_releases.each do |k8s_version,lr|
-        release_information[k8s_version] = {name: lr.name, version: lr.version, download_url: k3s_download_url_for_release(release: lr.release) }
+        release_information[k8s_version] = {name: lr.name, version: lr.version, date: lr.release.published_at.to_date, download_url: k3s_download_url_for_release(release: lr.release) }
       end
       release_information
     end
