@@ -1,12 +1,13 @@
 ---
-- name: set extra_agent_args
+- name: set extra_server_args - use docker
   set_fact:
-    extra_agent_args: >
-         {%- set argslist = ["--node-ip {{ k3s_agent_ip }}"] %}
-         {%- for arg in extra_agent_args|default([]) %}
+    extra_server_args: >
+         {%- set argslist = ["--docker"] %}
+         {%- for arg in extra_server_args|default([]) %}
          {%-  set argslist = argslist.append( arg ) %}
          {%- endfor %}
          {{- argslist -}}
+  when: (k3s_use_docker|default(false))
 
 - name: Get the k3s server token
   set_fact:

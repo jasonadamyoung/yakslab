@@ -2,6 +2,7 @@
   systemd_dir: /etc/systemd/system
   extra_server_args:
     - "--write-kubeconfig-mode 664"
+    - "--node-ip {{ k3s_server_ip }}"
   k3s_kubectl_api_host: 127.0.0.1
   k3s_kubectl_api_port: 6443
   local_clusters_path: "{{ role_path }}/../../clusters"

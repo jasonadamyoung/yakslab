@@ -1,13 +1,4 @@
 ---
-- name: set extra_server_args
-  set_fact:
-    extra_server_args: >
-         {%- set argslist = ["--node-ip {{ k3s_server_ip }}"] %}
-         {%- for arg in extra_server_args|default([]) %}
-         {%-  set argslist = argslist.append( arg ) %}
-         {%- endfor %}
-         {{- argslist -}}
-
 - name: set extra_server_args - no traefik
   set_fact:
     extra_server_args: >
@@ -17,6 +8,16 @@
          {%- endfor %}
          {{- argslist -}}
   when: (k3s_no_traefik|default(false))
+
+- name: set extra_server_args - use docker
+  set_fact:
+    extra_server_args: >
+         {%- set argslist = ["--docker"] %}
+         {%- for arg in extra_server_args|default([]) %}
+         {%-  set argslist = argslist.append( arg ) %}
+         {%- endfor %}
+         {{- argslist -}}
+  when: (k3s_use_docker|default(false))
 
 - name: Copy K3s service file
   register: k3s_service
