@@ -1,4 +1,4 @@
-- hosts: all,!monpi.lrvlab.net
+- hosts: all,!mailrelay
   become: yes
   become_method: sudo
   roles:

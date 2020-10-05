@@ -1,5 +1,5 @@
 - hosts:
-    - monpi.lrvlab.net
+    - mailrelay
   become: yes
   become_method: sudo
   roles:
