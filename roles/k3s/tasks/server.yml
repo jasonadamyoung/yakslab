@@ -54,7 +54,7 @@
     src: /var/lib/rancher/k3s/server/node-token
   register: node_token
 
-- name: KUBECONFIG | Store server node-token locally
+- name: Store server node-token locally
   copy:
     content: "{{ node_token.content }}"
     dest: "{{ local_k3s_token_file }}"

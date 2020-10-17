@@ -1,0 +1,39 @@
+---
+# make sure bind mount directories for the cluster exist
+- name: BINDMOUNTS | Create cluster directory
+  file:
+    path: "/data/k3d/{{ k3d_cluster_name}}"
+    state: 'directory'
+    mode: 0755
+
+- name: BINDMOUNTS | Create directory for persistent volumes
+  file:
+    path: "/data/k3d/{{ k3d_cluster_name}}/pv"
+    state: 'directory'
+    mode: 0755
+
+- name: BINDMOUNTS | Create directory for server node logs
+  file:
+    path: "/data/k3d/{{ k3d_cluster_name}}/logs-server"
+    state: 'directory'
+    mode: 0755
+
+- name: BINDMOUNTS | Create directory for agent node logs
+  file:
+    path: "/data/k3d/{{ k3d_cluster_name}}/{{ item }}"
+    state: 'directory'
+    mode: 0755
+  with_sequence: "start=0 end={{ k3d_agent_count|int - 1 }} format=logs-agent%01x"
+
+- name: BINDMOUNTS | Create directory for server container logs
+  file:
+    path: "/data/k3d/{{ k3d_cluster_name}}/logs-server/containers"
+    state: 'directory'
+    mode: 0755
+
+- name: BINDMOUNTS | Create directory for agent container logs
+  file:
+    path: "/data/k3d/{{ k3d_cluster_name}}/{{ item }}/containers"
+    state: 'directory'
+    mode: 0755
+  with_sequence: "start=0 end={{ k3d_agent_count|int - 1 }} format=logs-agent%01x"

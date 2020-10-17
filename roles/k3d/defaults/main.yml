@@ -1,0 +1,10 @@
+---
+ k3d_arch: "k3d-linux-amd64"
+ k3d_version: "v3.1.3"
+ k3d_checksum: "bd4a79d646ab81c2fbc484a26addd6620da9c43d47f935606f95c7e288151e72"
+ gcp_mtu: 1460
+ docker_network_mtu: "{{ gcp_mtu }}"
+ # mss clamping = docker_network_mtu - 50 bytes for flannel vxlan - 20 bytes for ip header - 20 bytes for tcp header
+ tcp_mss_mtu: "{{ docker_network_mtu|int - 90}}"
+ alternate_ssh_port: 24
+ use_alternate_ssh_port: false
