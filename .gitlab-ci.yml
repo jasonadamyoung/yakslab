@@ -1,0 +1,38 @@
+.docker_stages: &docker_stages
+  image: docker:stable
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - docker:dind
+  before_script:
+    - docker info
+    - docker login ${CI_REGISTRY} -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD}
+  after_script:
+    - docker logout ${CI_REGISTRY}
+
+stages:
+  - build_docker_image
+
+build_docker_image:
+  <<: *docker_stages
+  stage: build_docker_image
+  script:
+    - docker pull ${CI_REGISTRY_IMAGE}:latest || true
+    - >
+      docker build
+      --pull
+      --cache-from ${CI_REGISTRY_IMAGE}:latest
+      --tag ${CI_REGISTRY_IMAGE}:latest
+      --file Dockerfile
+      .
+    - docker push ${CI_REGISTRY_IMAGE}:latest
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+      changes:
+        - Dockerfile
+        - Gemfile
+        - Gemfile.lock
+        - Pipfile
+        - Pipfile.lock
+      when: always
