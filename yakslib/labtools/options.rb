@@ -2,7 +2,7 @@ require 'ostruct'
 require 'yaml'
 require 'erb'
 
-module Yaks
+module LabTools
   module Sources
     class YAMLSource
 
@@ -34,7 +34,7 @@ module Yaks
 
     def files
       if(@files.nil? or @files.empty?)
-        @files = ["#{File.join(File.dirname(__FILE__), "defaults.yml").to_s}",File.expand_path("./.yaks.yml")]
+        @files = ["#{File.join(File.dirname(__FILE__), "defaults.yml").to_s}"]
       end
       @files
     end
@@ -86,7 +86,7 @@ module Yaks
     def to_hash
       result = {}
       marshal_dump.each do |k, v|
-        result[k] = v.instance_of?( Glops::Options) ? v.to_hash : v
+        result[k] = v.instance_of?( LabTools::Options) ? v.to_hash : v
       end
       result
     end

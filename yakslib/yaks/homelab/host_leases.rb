@@ -15,9 +15,9 @@ module Yaks
       def get_leases_list(force: false)
         if(@leases.nil? or force)
           @leases = []
-          lease_list = Net::SCP::download!(Rap.settings.homelab_router,
-                                          Rap.settings.homelab_sshuser,
-                                          Rap.settings.homelab_hostleases).split("\n")
+          lease_list = Net::SCP::download!(Yaks.settings.homelab_router,
+                                          Yaks.settings.homelab_sshuser,
+                                          Yaks.settings.homelab_hostleases).split("\n")
           lease_list.each do |lease_line|
             lease = lease_line.split(' ')
             lease_data = {}

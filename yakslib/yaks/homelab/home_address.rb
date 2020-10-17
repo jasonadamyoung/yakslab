@@ -22,7 +22,7 @@ module Yaks
       def home_dns_record
         if(@home_dns_record.nil?)
           begin
-            @home_dns_record = @home_domain_dns.get_dns_record_for_record_id(dns_record_id: Rap.settings.home_domain_homeip_record)
+            @home_dns_record = @home_domain_dns.get_dns_record_for_record_id(dns_record_id: Yaks.settings.home_domain_homeip_record)
           rescue DropletKit::Error => exception
             @home_dns_record = nil
           end

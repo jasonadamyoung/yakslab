@@ -7,14 +7,14 @@ module Yaks
     class Dns
 
 
-      def initialize(domain: Rap.settings.home_domain)
+      def initialize(domain: Yaks.settings.home_domain)
         @domain = domain
         doclient
       end
 
       def doclient
         if(@doclient.nil?)
-          @doclient = DropletKit::Client.new(access_token: Rap.settings.homelab_do_token)
+          @doclient = DropletKit::Client.new(access_token: Yaks.settings.homelab_do_token)
         end
         @doclient
       end
