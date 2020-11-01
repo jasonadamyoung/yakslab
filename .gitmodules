@@ -1,0 +1,3 @@
+[submodule "yakslib/labtools"]
+	path = yakslib/labtools
+	url = git@gitlab.com:outfielding/labtools.git
