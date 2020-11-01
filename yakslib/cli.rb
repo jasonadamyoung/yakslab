@@ -33,7 +33,7 @@ module YaksCLI
     method_option :dry_run,   :type => :boolean, :default => false, :desc => "Dry-run - don't actually run the command"
 
     def update(limitto)
-      require_relative 'labcommands/ansible/update'
+      require_relative 'labtools/_commands/ansible/update'
       LabCommand::Ansible::Update.new(limitto,options).🚀
     end
   end
