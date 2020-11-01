@@ -1,5 +1,5 @@
-module Yaks
-  class Command
+module YaksCommand
+  class Base
 
     def 🚀(*)
       raise(
