@@ -13,7 +13,7 @@ module LabCommand
 
       def 🚀
         if(@vault_file == 'all')
-          vaultfiles = LabTools::AnsibleVault.find_all_vault_files
+          vaultfiles = LabTools::Ansible::AnsibleVault.find_all_vault_files
         else
           vaultfiles = [@vault_file]
         end
@@ -24,7 +24,7 @@ module LabCommand
 
       def encrypt_vault(vault_file: )
         puts "Encrypting #{vault_file}"
-        avault = LabTools::AnsibleVault.new(vault_file: vault_file, options: @options)
+        avault = LabTools::Ansible::AnsibleVault.new(vault_file: vault_file, options: @options)
         if(!avault.decrypted_file_exists?)
           @prompt.error "The decrypted file #{avault.decrypted_file} does not exist. Please decrypt the vault first."
           return false
