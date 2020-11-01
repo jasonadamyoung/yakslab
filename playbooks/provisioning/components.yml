@@ -11,6 +11,14 @@
   roles:
     - baselevel
 
+# packageproxy
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - packageproxy
+
+
 # updates
 - hosts: all
   become: yes
@@ -34,7 +42,7 @@
        - reboot sequence
 
 # mailforwarding
-- hosts: all,!proxy
+- hosts: all,!mailrelay
   become: yes
   become_method: sudo
   roles:
