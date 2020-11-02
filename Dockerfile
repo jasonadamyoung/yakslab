@@ -1,5 +1,6 @@
 FROM ubuntu:focal
 LABEL maintainer="jay@outfielding.net"
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
     apt-utils \
