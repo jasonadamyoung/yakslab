@@ -1,6 +1,4 @@
 require 'labtools/core'
-require 'yaks/dehydrated'
-require 'yaks/homelab'
 
 module Yaks
   class YaksError < StandardError; end
