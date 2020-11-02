@@ -11,7 +11,8 @@ RUN apt-get update -y \
     iproute2 \
     curl \
     openssl \
-    libssl-dev
+    libssl-dev \
+    git
 RUN apt-get install -y ruby ruby-dev
 RUN apt-get install -y  python3 python3-setuptools python3-pip python-is-python3
 
