@@ -63,6 +63,7 @@ GEM
     jsonpath (1.0.5)
       multi_json
       to_regexp (~> 0.2.1)
+    jwt (2.2.2)
     kartograph (0.2.8)
     kramdown (2.3.0)
       rexml
@@ -161,6 +162,7 @@ DEPENDENCIES
   droplet_kit
   ed25519 (>= 1.2, < 2.0)
   inifile
+  jwt
   kubeclient
   labclient
   louis

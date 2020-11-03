@@ -31,6 +31,9 @@ gem 'openssl'
 # github api
 gem 'octokit'
 
+# jwt support
+gem 'jwt'
+
 # mac address lookup
 gem 'louis'
 
