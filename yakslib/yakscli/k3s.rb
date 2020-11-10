@@ -24,5 +24,12 @@ module YaksCLI
       LabCommand::K3s::Dump.new(dump_file: dump_file, options: options).🚀
     end
 
+    desc "version", "Query Kubernetes Version information for the specified K3s host"
+    method_option :host, :required => true, :type => :string, :desc => "Remote K3s host"
+    def version
+      require_relative '../labtools/_commands/k3s/version'
+      LabCommand::K3s::Version.new(host: options[:host], options: options).🚀
+    end
+
   end
 end
