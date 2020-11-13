@@ -22,10 +22,10 @@ module YaksCLI
       LabCommand::K3d::Delete.new(host: options[:host], cluster_name: cluster_name, options: options).🚀
     end
 
-    desc "clusters", "List the clusters on the specified k3d host"
-    def clusters
-      require_relative '../labtools/_commands/clusters'
-      LabCommand::K3d::Clusters.new(host: options[:host], options: options).🚀
+    desc "list", "List the clusters on the specified k3d host"
+    def list
+      require_relative '../labtools/_commands/k3d/list'
+      LabCommand::K3d::List.new(host: options[:host], options: options).🚀
     end
 
     desc "start CLUSTERNAME", "Start CLUSTERNAME on HOST"

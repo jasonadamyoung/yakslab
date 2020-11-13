@@ -4,6 +4,7 @@ require 'amazing_print'
 require 'yakscli/avault'
 require 'yakscli/k3s'
 require 'yakscli/k3d'
+require 'yakscli/releases'
 require 'yakscli/sslcerts'
 
 module YaksCLI
@@ -26,6 +27,9 @@ module YaksCLI
 
     desc "k3d", "Execute K3d commands"
     subcommand "k3d", YaksCLI::K3d
+
+    desc "releases", "Get Release Information"
+    subcommand "releases", YaksCLI::Releases
 
     desc "sslcerts", "Execute SSLCerts commands"
     subcommand "sslcerts", YaksCLI::Sslcerts
