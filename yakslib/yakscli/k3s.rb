@@ -11,12 +11,6 @@ module YaksCLI
       LabCommand::K3s::Download.new(version: release_version, options: command_options).🚀
     end
 
-    desc "latest", "Latest K3s Release Information"
-    def latest
-      require_relative '../labtools/_commands/k3s/latest'
-      LabCommand::K3s::Latest.new(options: options).🚀
-    end
-
     desc "dump DUMPFILE", "Dump K3s Release Information to a yaml file"
     method_option :quiet, :type => :boolean, :default => false, :desc => "Don't show progress spinner"
     def dump(dump_file)
