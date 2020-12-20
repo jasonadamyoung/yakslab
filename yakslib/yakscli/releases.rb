@@ -24,15 +24,14 @@ module YaksCLI
       LabCommand::Releases::GitLab.new(version: version, options: options).🚀
     end
 
-    desc "dump DUMPFILE", "Dump Release Information to a yaml or json file"
-    method_option :project, :type => :string, :required => true, :desc => "Project: gitlab/k3s"
+    desc "dump PROJECT DUMPFILE", "Dump [PROJECT] Release Information to a yaml or json file"
     method_option :quiet, :type => :boolean, :default => false, :desc => "Don't show progress spinner"
     method_option :update_cache, :type => :boolean, :default => false, :desc => "Update cache information"
-    def dump(dump_file)
-      if(options[:project] == 'gitlab')
+    def dump(project,dump_file)
+      if(project == 'gitlab')
         require_relative '../labtools/_commands/releases/gitlab_dump'
         LabCommand::Releases::GitLabDump.new(dump_file: dump_file, options: options).🚀
-      elsif(options[:project] == 'k3s')
+      elsif(project == 'k3s')
         require_relative '../labtools/_commands/releases/k3s_dump'
         LabCommand::Releases::K3sDump.new(dump_file: dump_file, options: options).🚀
       else
