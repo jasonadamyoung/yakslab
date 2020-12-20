@@ -14,6 +14,7 @@ RUN apt-get update -y \
     curl \
     openssl \
     libssl-dev \
+    libffi-dev \
     git
 RUN apt-get install -y ruby ruby-dev
 RUN apt-get install -y  python3 python3-setuptools python3-pip python-is-python3
