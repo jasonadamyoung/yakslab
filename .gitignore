@@ -49,3 +49,6 @@ apicache/*
 
 # ignore cache files
 *.cache
+
+# ignore .vscode
+.vscode/
