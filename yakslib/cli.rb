@@ -6,6 +6,7 @@ require 'yakscli/k3s'
 require 'yakscli/k3d'
 require 'yakscli/releases'
 require 'yakscli/sslcerts'
+require 'yakscli/subtest'
 
 module YaksCLI
   class CLI < Thor
@@ -33,6 +34,9 @@ module YaksCLI
 
     desc "sslcerts", "Execute SSLCerts commands"
     subcommand "sslcerts", YaksCLI::Sslcerts
+
+    desc "subtest", "Execute Subtest commands"
+    subcommand "subtest", YaksCLI::Subtest
 
     desc "update HOST(s)", "Run updates via ansible against the specified host or host group "
     method_option :verbosity, :type => :numeric, :default => 0, :desc => "ansible-playbook verbosity (0=none,1=-v,2=-vv,3=-vvv,4=-vvvv)"
