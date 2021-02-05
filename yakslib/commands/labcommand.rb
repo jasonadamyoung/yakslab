@@ -1,4 +1,6 @@
-module YaksCommand
+require 'tty-spinner'
+
+module LabCommand
   class Base
 
     def 🚀(*)

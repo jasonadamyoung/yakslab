@@ -1,11 +1,15 @@
 require_relative '../labcommand'
 
 module LabCommand
-  module SSLCerts
-    class Deploy < LabCommand::Base
-      def initialize(options: {})
-        @options = options
-        playbook_file = 'playbooks/gitlabcerts.yml'
+  module Ansible
+    class Update < LabCommand::Base
+      def initialize(limitto,options)
+        @options = options.merge({limit: limitto})
+        if(@options[:no_reboot])
+          playbook_file = 'playbooks/updates_only.yml'
+        else
+          playbook_file = 'playbooks/updates_with_reboot.yml'
+        end
         @ansible_playbook = LabTools::Ansible::Playbook.new(playbook_file: playbook_file,options: @options)
       end
 

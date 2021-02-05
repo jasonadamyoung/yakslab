@@ -1,8 +1,8 @@
-require_relative '../yakscommand'
+require_relative '../labcommand'
 
-module YaksCommand
+module LabCommand
   module SSLCerts
-    class DehydratedInfo < YaksCommand::Base
+    class DehydratedInfo < LabCommand::Base
       def initialize(options: {})
         @options = options
         @force = options[:force].nil? ? false : options[:force]
