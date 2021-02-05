@@ -15,6 +15,7 @@ ascii-graph = "*"
 openshift = "*"
 requests = "*"
 ansible = "*"
+pycrypto = "*"
 
 [requires]
 python_version = "3.8"
