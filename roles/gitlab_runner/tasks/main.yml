@@ -1,0 +1,36 @@
+---
+- name: GITLAB RUNNER | Set runner command (docker)
+  set_fact:
+    gitlab_runner_command:  "docker exec -it {{ gitlab_runner_docker_container_name }} gitlab-runner"
+  when: (gitlab_runner_source == 'docker')
+
+- name: GITLAB RUNNER | Set runner command (package)
+  set_fact:
+    gitlab_runner_command:  "/usr/bin/gitlab-runner"
+  when: (gitlab_runner_source == 'package')
+
+- { include: docker-runner.yml,   when: (gitlab_runner_source == 'docker') }
+- { include: package-runner.yml,  when: (gitlab_runner_source == 'package') }
+
+- name: GITLAB RUNNER | Wait For Omnibus GitLab to be available
+  uri:
+    url: "{{ gitlab_registration_server }}"
+    method: GET
+    status: 200
+  register: _result
+  until: _result.status == 200
+  retries: 24 # retry X times
+  delay: 5 # pause for X sec b/w each call
+
+- name: GITLAB RUNNER | Set Docker-based gitlab_runner_register_args
+  set_fact:
+    gitlab_runner_register_args: >
+         {%- set argslist = gitlab_runner_register_docker_args %}
+         {%- for arg in gitlab_runner_register_args|default([]) %}
+         {%-  set argslist = argslist.append( arg ) %}
+         {%- endfor %}
+         {{- argslist -}}
+  when: (gitlab_runner_executor == 'docker')
+
+- name: GITLAB RUNNER | Register the runner with GitLab (docker executor)
+  command: "{{ gitlab_runner_command }} register --non-interactive {{ gitlab_runner_register_args | join(" ") }}"

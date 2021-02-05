@@ -1,0 +1,51 @@
+# Avoid running unnecessary services on the Gitaly server
+postgresql['enable'] = false
+redis['enable'] = false
+nginx['enable'] = false
+unicorn['enable'] = false
+puma['enable'] = false
+sidekiq['enable'] = false
+gitlab_workhorse['enable'] = false
+grafana['enable'] = false
+gitlab_exporter['enable'] = false
+
+# If you run a seperate monitoring node you can disable these services
+alertmanager['enable'] = false
+prometheus['enable'] = false
+
+# If you don't run a seperate monitoring node you can
+# Enable Prometheus access & disable these extra services
+# This makes Prometheus listen on all interfaces. You must use firewalls to restrict access to this address/port.
+# prometheus['listen_address'] = '0.0.0.0:9090'
+# prometheus['monitor_kubernetes'] = false
+
+# If you don't want to run monitoring services uncomment the following (not recommended)
+# node_exporter['enable'] = false
+
+# Prevent database connections during 'gitlab-ctl reconfigure'
+gitlab_rails['rake_cache_clear'] = false
+gitlab_rails['auto_migrate'] = false
+
+# Configure the gitlab-shell API callback URL. Without this, `git push` will
+# fail. This can be your 'front door' GitLab URL or an internal load
+# balancer.
+gitlab_rails['internal_api_url'] = '{{ gitlab_external_url }}'
+gitlab_shell['secret_token'] = 'SHELL_TOKEN'
+
+# Authentication token to ensure only authorized servers can communicate with
+# Gitaly server
+gitaly['auth_token'] = 'AUTH_TOKEN'
+
+# Make Gitaly accept connections on all network interfaces. You must use
+# firewalls to restrict access to this address/port.
+# Comment out following line if you only want to support TLS connections
+gitaly['listen_addr'] = "0.0.0.0:8075"
+
+git_data_dirs({
+  'default' => {
+    'path' => '/var/opt/gitlab/git-data'
+  },
+  'storage{{ groups['gitlab_gitaly'].index(inventory_hostname) + 1 }}' => {
+    'path' => '/mnt/gitlab/git-data'
+  },
+})

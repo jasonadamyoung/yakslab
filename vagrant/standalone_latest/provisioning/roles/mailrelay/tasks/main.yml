@@ -1,0 +1,51 @@
+---
+  - name: Install required packages for a mail relay
+    apt: 
+      name: "{{ mailrelay_packages }}"
+      state: present
+
+  - name: manage mailname
+    template:
+      src:  mailname.j2
+      dest: /etc/mailname
+      owner: root
+      group: root
+      mode:  0644
+
+  - name: manage sasl_passwd
+    template:
+      src: sasl_passwd.j2
+      dest: /etc/postfix/sasl_passwd
+      owner: root
+      group: root
+      mode:  0644
+    notify: run postmap
+
+  - name: manage virtual map
+    template:
+      src: virtual.j2
+      dest: /etc/postfix/virtual
+      owner: root
+      group: root
+      mode:  0644
+    notify: 
+      - run postmap virtual
+      - restart postfix
+
+  - name: manage postfix main.cf
+    template:
+      src: main.cf.j2
+      dest: /etc/postfix/main.cf
+      owner: root
+      group: root
+      mode:  0644
+    notify: restart postfix
+
+  - name: copy aliases
+    copy:
+        src: etc_aliases
+        dest: /etc/aliases
+        owner: root
+        group: root
+        mode: 0644
+    notify: run postalias

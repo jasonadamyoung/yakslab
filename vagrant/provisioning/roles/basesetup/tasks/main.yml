@@ -1,0 +1,5 @@
+- include: hostname.yml
+- include: norootlogin.yml
+- include: corepackages.yml
+- include: aptupdates.yml
+- include: logrotate.yml

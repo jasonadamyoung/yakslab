@@ -7,6 +7,7 @@ require 'yakscli/k3d'
 require 'yakscli/releases'
 require 'yakscli/sslcerts'
 require 'yakscli/subtest'
+require 'yakscli/gitlab_clusters'
 
 module YaksCLI
   class CLI < Thor
@@ -37,6 +38,9 @@ module YaksCLI
 
     desc "subtest", "Execute Subtest commands"
     subcommand "subtest", YaksCLI::Subtest
+
+    desc "gitlab-clusters", "GitLab Cluster Tools"
+    subcommand "gitlab_clusters", YaksCLI::GitlabClusters
 
     desc "update HOST(s)", "Run updates via ansible against the specified host or host group "
     method_option :verbosity, :type => :numeric, :default => 0, :desc => "ansible-playbook verbosity (0=none,1=-v,2=-vv,3=-vvv,4=-vvvv)"

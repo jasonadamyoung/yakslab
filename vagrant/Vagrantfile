@@ -1,0 +1,73 @@
+# Specify minimum Vagrant version and Vagrant API version
+Vagrant.require_version ">= 2.2.0"
+require_relative 'hosts_maker/maker'
+
+vagrant_configuration_root = File.expand_path(__dir__)
+vagrant_setup_path = Dir.pwd
+hosts_maker = VagrantHosts::Maker.new(configuration_root: vagrant_configuration_root)
+(vagrant_hosts,groups) = hosts_maker.get_hosts_and_groups
+
+
+Vagrant.configure("2") do |config|
+  vagrant_hosts.each do |vagrant_host|
+    box_settings         = vagrant_host["box_settings"]
+    provisioner_settings = vagrant_host["provisioner_settings"]
+    ansible_settings     = vagrant_host["ansible_settings"]
+    config.vm.define box_settings['name'] do |machine|
+
+      machine.vm.box = box_settings['box']
+      machine.vm.hostname = box_settings['name']
+      #machine.vm.network box_settings['network'], ip: box_settings['ip_address']
+
+      machine.vm.provider "vmware_desktop" do |v, override|
+        v.vmx["memsize"] = box_settings['memory']
+        v.vmx["numvcpus"] = box_settings['cpu']
+        v.ssh_info_public = true
+      end
+
+      # this is sort of a hack in order to make sure we have a fully-fleshed
+      # out ansible inventory for the defined vagrant machines
+      # the full inventory is not created for all the machines until they are
+      # up and provisioning is triggered for each one, since this Vagrantfile
+      # goes machine-by-machine
+
+      # so what we'll do is check for an "initialprovision" file for the host
+      # if present, playbook as normal, if not, replace with a ping playbook
+      # Net impact is that all machines come up first - and run an initial
+      # provision playbook.  Subsequent runs to `vagrant provision` will
+      # pick up the playbook defined in the host configuration
+
+      @playbook = "provisioning/vagrant_initial_provision.yml"
+      @extra_vars = {'vagrant_setup_path' => vagrant_setup_path}
+      @provision_file = "./#{machine.vm.hostname.to_s}.initialprovision"
+      machine.trigger.before :provision do |trigger|
+        trigger.info = "Checking to see if #{@provision_file} exists..."
+        if(File.exists?(@provision_file))
+          @playbook = ansible_settings['playbook']
+          @extra_vars = provisioner_settings
+        end
+      end
+
+      # see: https://www.vagrantup.com/docs/provisioning/ansible_common.html for documentation on ansible provisioner
+      machine.vm.provision "ansible" do |ansible|
+        ansible.compatibility_mode = "2.0"
+        ansible.config_file = "./ansible.cfg"
+        ansible.playbook = @playbook
+        ansible.extra_vars = @extra_vars
+        ansible.verbose = ansible_settings['verbosity']
+        ansible.groups = groups
+      end
+
+
+      machine.trigger.after :destroy do |trigger|
+        trigger.info = "Machine destroyed! Removing #{@provision_file} if it exists"
+        trigger.ruby do |env,machine|
+          if(File.exists?(@provision_file))
+            File.delete(@provision_file)
+          end
+        end
+      end
+
+    end
+  end
+end

@@ -1,0 +1,11 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  vars:
+    is_cleanup: true
+
+  tasks:
+    - name: K3d | CLEANUP
+      import_role:
+        name: k3d_cluster
+        tasks_from: cleanup.yml

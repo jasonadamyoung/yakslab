@@ -1,0 +1,4 @@
+---
+hosts:
+  - gitlab: latest
+  - k3s_cluster: 1.16

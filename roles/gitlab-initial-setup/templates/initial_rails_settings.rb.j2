@@ -1,0 +1,27 @@
+## change the username/email for User(1)
+admin_user = User.find(1)
+admin_user.username = '{{ vault_gitlab_admin_username }}'
+admin_user.email  = '{{ vault_gitlab_admin_email }}'
+admin_user.password = '{{ vault_gitlab_admin_password }}'
+admin_user.password_confirmation = '{{ vault_gitlab_admin_password }}'
+admin_user.password_automatically_set = false
+admin_user.save
+
+## create a personal access token for
+admin_token_name = 'GitLab Administration API Token'
+if(!admin_user.personal_access_tokens.where(name: admin_token_name))
+  admin_user.personal_access_tokens.create(
+    name: admin_token_name,
+    token_digest: Gitlab::CryptoHelper.sha256('{{ vault_gitlab_admin_token }}'),
+    impersonation: false,
+    scopes: Gitlab::Auth::API_SCOPES
+  )
+end
+
+## initial Application Settings
+# * turn off self-registration
+# * set a shared runners registration token
+configuration_settings = ApplicationSetting.first
+configuration_settings.signup_enabled = false
+configuration_settings.set_runners_registration_token('{{ vault_gitlab_runners_token }}')
+configuration_settings.save

@@ -1,0 +1,23 @@
+- name: GITLAB INITIAL SETUP | RAILS | create temporary file
+  tempfile:
+    state: file
+    suffix: .rb
+  register: initial_rails_settings_script
+
+- name: GITLAB INITIAL SETUP | RAILS | copy initial_rails_settings script
+  template:
+    src: initial_rails_settings.rb.j2
+    dest: "{{ initial_rails_settings_script.path }}"
+    owner: git
+    group: git
+    mode: 0600
+
+- name: GITLAB INITIAL SETUP | RAILS |  Run initial_rails_settings script
+  command:
+    cmd: /usr/bin/gitlab-rails runner "{{ initial_rails_settings_script.path }}"
+
+- name: GITLAB INITIAL SETUP | RAILS | Remove the script
+  file:
+    path: "{{ initial_rails_settings_script.path }}"
+    state: absent
+  when: (initial_rails_settings_script.path is defined)

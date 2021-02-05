@@ -1,0 +1,15 @@
+---
+  k3d_cluster_name: "gitlab"
+  k3d_agent_count: 2
+  k3d_k3s_image: "rancher/k3s:{{ k3s_version|regex_replace('\\+', '-') }}"
+  k3d_api_host: 0.0.0.0
+  k3d_api_port: 6443
+  local_kubeconfig_path: "{{ role_path }}/../../clusters"
+  gcp_mtu: 1460
+  docker_network_mtu: "{{ gcp_mtu }}"
+  k3d_no_traefik: false
+  # if you expose port 22 on the load balancer (e.g. a GitLab helm cluster)
+  # - MAKE SURE TO SETUP HOST SSH ON AN ALTERNATE PORT
+  k3d_exposed_ports:
+    - 80
+    - 443

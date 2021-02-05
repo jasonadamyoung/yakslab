@@ -1,0 +1,5 @@
+---
+  gcp_host: false
+  docker_package_host: 'https://download.docker.com/linux/ubuntu/'
+  gcp_mtu: 1460
+  docker_network_mtu: "{{ gcp_mtu }}"

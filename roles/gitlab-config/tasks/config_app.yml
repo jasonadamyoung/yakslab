@@ -1,0 +1,4 @@
+---
+# standalone gitlab - all components
+- { include: gitlab_rb_app.yml }
+- { include: gitlab_rb_mailhog.yml, when: (gitlab_use_mailhog|bool|default(true)) }

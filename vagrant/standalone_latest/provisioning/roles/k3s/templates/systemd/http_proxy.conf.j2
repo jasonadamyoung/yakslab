@@ -1,0 +1,4 @@
+[Service]
+Environment="HTTP_PROXY=http://{{ container_proxy_host }}/"
+Environment="HTTPS_PROXY=http://{{ container_proxy_host }}/"
+Environment="NO_PROXY=.svc,.svc.cluster.local"

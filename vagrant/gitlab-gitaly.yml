@@ -1,0 +1,7 @@
+---
+hosts:
+  - gitlab:
+      version: latest
+      hosts:
+        app:
+        gitaly:

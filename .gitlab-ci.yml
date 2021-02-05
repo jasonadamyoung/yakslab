@@ -10,8 +10,6 @@
     - docker login ${CI_REGISTRY} -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD}
   after_script:
     - docker logout ${CI_REGISTRY}
-  tags:
-    - yakslab
 
 stages:
   - build_docker_image

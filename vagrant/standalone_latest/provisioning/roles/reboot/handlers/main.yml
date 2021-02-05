@@ -1,0 +1,20 @@
+---
+- name: reboot sequence
+  changed_when: "true"
+  debug: msg='trigger machine reboot sequence'
+  notify:
+    - get current time
+    - reboot system
+    - verify a reboot was actually initiated
+- name: get current time
+  command: /bin/date +%s
+  register: before_reboot
+  become: no
+  become_method: sudo
+- name: reboot system
+  reboot:
+- name: verify a reboot was actually initiated
+  # machine should have started after it has been rebooted
+  shell: "expr $(( `date +%s` - `awk -F . '{print $1}' /proc/uptime` > {{ before_reboot.stdout }} ))"
+  become: no
+  become_method: sudo

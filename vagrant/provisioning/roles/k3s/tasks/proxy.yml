@@ -1,0 +1,43 @@
+---
+- name: Make sure /etc/systemd/system/k3s.service.d/ exists
+  file:
+    path: "{{ systemd_dir }}/k3s.service.d/"
+    state: directory
+    mode: 0755
+  when: (k3s_role != 'agent')
+
+- name: Deploy k3s proxy information
+  template:
+    src: systemd/http_proxy.conf.j2
+    dest: "{{ systemd_dir }}/k3s.service.d/http-proxy.conf"
+    mode: 0644
+  when: (k3s_role != 'agent')
+
+- name: Make sure /etc/systemd/system/k3s.service.d/ exists
+  file:
+    path: "{{ systemd_dir }}/k3s.service.d/"
+    state: directory
+    mode: 0755
+  when: (k3s_role == 'agent')
+
+- name: Deploy k3s proxy information
+  template:
+    src: systemd/http_proxy.conf.j2
+    dest: "{{ systemd_dir }}/k3s.service.d/http-proxy.conf"
+    mode: 0644
+  when: (k3s_role == 'agent')
+
+- name: Download proxy ca-cert
+  get_url:
+    url:  "http://{{ container_proxy_host }}/ca.crt"
+    dest: /usr/share/ca-certificates/container_registry_proxy.crt
+    mode: 0644
+
+- name: Add proxy cert to system certs
+  lineinfile:
+    dest: /etc/ca-certificates.conf
+    line: "container_registry_proxy.crt"
+    state: present
+
+- name: update certs
+  shell: /usr/sbin/update-ca-certificates --fresh

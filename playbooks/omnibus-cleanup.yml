@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+
+  tasks:
+    - name: OMNIBUS | CLEANUP
+      import_role:
+        name: omnibus-package
+        tasks_from: cleanup.yml

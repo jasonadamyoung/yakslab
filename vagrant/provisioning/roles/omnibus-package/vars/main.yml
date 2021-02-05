@@ -1,0 +1,2 @@
+---
+  the_time_is_now: "{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"

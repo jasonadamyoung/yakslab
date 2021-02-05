@@ -1,3 +1,4 @@
+# destination is relative to playbook_dir
 - hosts: all
   roles:
-    - { role: f500.dumpall, dumpall_host_destination: "./dumpvars/{{ inventory_hostname_short }}"}
+    - { role: f500.dumpall, dumpall_host_destination: "../dumpvars/{{ inventory_hostname_short }}"}

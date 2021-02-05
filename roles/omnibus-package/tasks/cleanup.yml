@@ -1,0 +1,23 @@
+---
+- name: OMNIBUS | CLEANUP | Cleanse GitLab
+  command:
+    cmd: gitlab-ctl cleanse
+
+- name: OMNIBUS | CLEANUP | Stop gitlab-runsvdir
+  systemd:
+    name: gitlab-runsvdir
+    state: stopped
+
+- name: OMNIBUS | CLEANUP | Remove gitlab-runsvdir.services
+  file:
+    name: /usr/lib/systemd/system/gitlab-runsvdir.service
+    state: absent
+
+- name: OMNIBUS | CLEANUP | Tell systemd to re-read configuration
+  systemd:
+    daemon_reload: yes
+
+- name: OMNIBUS | CLEANUP | Remove GitLab package
+  apt:
+    pkg: gitlab-ee
+    state: absent

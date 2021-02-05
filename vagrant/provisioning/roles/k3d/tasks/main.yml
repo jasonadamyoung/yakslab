@@ -1,0 +1,52 @@
+---
+# network tasks
+- { include: network.yml, tags: [ 'network' ] }
+
+# ssh
+- name: Setup alternate SSH port
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "^Port"
+    line: "Port {{ alternate_ssh_port }}"
+  when: (use_alternate_ssh_port)
+  notify: "Restart sshd"
+
+# download k3d binary
+- name: DOWNLOAD | Download k3d binary x64 from k3d releases
+  get_url:
+    url: "https://github.com/rancher/k3d/releases/download/{{ k3d_version }}/{{ k3d_arch }}"
+    dest: /usr/local/bin/k3d
+    owner: root
+    group: root
+    mode: 0755
+    checksum: "sha256:{{ k3d_checksum }}"
+  when: (k3d_proxy_url is not defined)
+
+- name: DOWNLOAD | Download k3d binary x64 from local proxy
+  get_url:
+    url: "{{k3d_proxy_url }}/k3d-{{ k3d_arch}}-{{ k3d_version}}"
+    dest: /usr/local/bin/k3d
+    owner: root
+    group: root
+    mode: 0755
+    checksum: "sha256:{{ k3d_checksum }}"
+  when: (k3d_proxy_url is defined)
+
+- name: BINDMOUNT | Create data directory for future bindmounts
+  file:
+    path: "/data/k3d/"
+    state: 'directory'
+    owner: root
+    group: docker
+    mode: 0775
+
+- name: UTILS | Install jq
+  apt:
+    pkg:
+      - jq
+    state: present
+
+- name: UTILS | Install kubectl with option --classic
+  snap:
+    name: kubectl
+    classic: yes

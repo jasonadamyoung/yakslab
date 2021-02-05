@@ -1,0 +1,57 @@
+---
+- include: createaccount.yml
+  when: (create_waldorf_account is defined and create_waldorf_account == true)
+
+- name: create the waldorf .ssh directory
+  file: 
+    path: /home/waldorf/.ssh 
+    owner: waldorf 
+    group: waldorf 
+    mode: 0700 
+    state: directory
+
+- name: set waldorf sshkeys
+  import_role:
+    name: sshkeys
+    tasks_from: waldorf
+
+- name: copy waldorf ssh config
+  copy:
+    src: "ssh_config"
+    dest: /home/waldorf/.ssh/config
+    owner: waldorf
+    group: waldorf
+    mode: 0600
+
+- name: copy waldorf profile
+  copy:
+    src: "profile.sh"
+    dest: /home/waldorf/.profile
+    owner: waldorf
+    group: waldorf
+    mode: 0660
+
+- name: copy waldorf bashrc
+  copy:
+    src: "bashrc.sh"
+    dest: /home/waldorf/.bashrc
+    owner: waldorf
+    group: waldorf
+    mode: 0660
+
+- name: copy waldorf bash aliases
+  copy:
+    src: "bash_aliases.sh"
+    dest: /home/waldorf/.bash_aliases
+    owner: waldorf
+    group: waldorf
+    mode: 0660
+
+- name: copy waldorf sudoers information
+  copy:
+    src: "sudoers/waldorf"
+    dest: /etc/sudoers.d/waldorf
+    owner: root
+    group: root
+    mode: 0440
+    validate: 'visudo -cf %s'

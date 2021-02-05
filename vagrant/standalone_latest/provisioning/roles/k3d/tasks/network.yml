@@ -1,0 +1,34 @@
+---
+- name: Enable IPv4 forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    state: present
+    reload: yes
+
+- name: Enable IPv6 forwarding
+  sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: "1"
+    state: present
+    reload: yes
+
+# when running in GCP - there's a per host MTU of 1460
+# the Flannel vxlan overhead uses another 50 bytes
+# Docker-in-Docker containers will break because the
+# Docker MTU is 1500 - this sets up TCP MSS clamping
+# to allow Docker containers to work properly
+#
+
+# check for existing rule
+- name: NETWORK | look for existing gcp_tcp_mss_clamp comment
+  shell: iptables-save | grep -q gcp_tcp_mss_clamp
+  register: gcp_rule_exists
+  failed_when: gcp_rule_exists.rc > 1
+  when: (gcp_host|default(False))
+
+- name: NETWORK | Mangle the POSTROUTING to clamp the TCP MSS to {{ tcp_mss_mtu }}
+  command: "iptables -t mangle -A POSTROUTING -p tcp --tcp-flags SYN,RST SYN -o {{ ansible_default_ipv4.interface }} -j TCPMSS --set-mss {{ tcp_mss_mtu }} -m comment --comment 'gcp_tcp_mss_clamp'"
+  when: (gcp_host|default(False)) and (gcp_rule_exists.rc == 1)
+
+

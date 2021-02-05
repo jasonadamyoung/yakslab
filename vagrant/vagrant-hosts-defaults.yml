@@ -1,0 +1,10 @@
+---
+defaults:
+  vagrant_domain: ".gldev"
+  network: private_network
+  memory: 4096
+  cpu: 4
+  box: bento/ubuntu-18.04
+  ansible:
+    verbosity: 'v'
+    playbook: 'playbooks/aptprep.yml'

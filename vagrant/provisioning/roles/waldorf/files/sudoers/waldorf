@@ -1,0 +1,2 @@
+# provide waldorf passwordless sudo access
+waldorf ALL=NOPASSWD: ALL

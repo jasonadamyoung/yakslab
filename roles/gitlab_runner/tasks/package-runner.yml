@@ -1,0 +1,27 @@
+---
+- name: GITLAB RUNNER | PACKAGE | Create configuration directory
+  file:
+    path: /etc/gitlab-runner-docker
+    state: directory
+    mode: 0755
+
+- name: GITLAB RUNNER | PACKAGE | Make sure apt is setup for external repositories
+  import_role:
+    name: aptprep
+    tasks_from: main.yml
+
+- name: GITLAB RUNNER | PACKAGE | Add GitLab GPG key
+  apt_key:
+    url: https://packages.gitlab.com/gpg.key
+    id:  F6403F6544A38863DAA0B6E03F01618A51312F3F
+    state: present
+
+- name: GITLAB RUNNER | PACKAGE | Add GitLab Runner APT repository
+  apt_repository:
+    repo: deb [arch=amd64] {{ gitlab_runner_package_host }} {{ansible_distribution_release}} main
+    state: present
+    update_cache: yes
+
+- name: GITLAB RUNNER | PACKAGE | Install GitLab Runner
+  apt:
+    pkg: "{{ gitlab_runner_package }}"

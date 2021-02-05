@@ -1,0 +1,44 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  vars:
+    ansible_ssh_user: "{{ lookup('env', 'firstuser') }}"
+  roles:
+    - waldorf
+
+# basesetup
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - basesetup
+
+# mailreay
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - mailrelay
+
+# updates
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - reboot
+
+  tasks:
+   - name: update apt cache
+     apt: update_cache=yes
+
+   - name: run apt upgrade
+     apt: upgrade=full
+
+   - name: check if a reboot is required
+     shell: "[ -f /var/run/reboot-required ]"
+     failed_when: False
+     register: reboot_required
+     changed_when: reboot_required.rc == 0
+     notify:
+       - reboot sequence
+

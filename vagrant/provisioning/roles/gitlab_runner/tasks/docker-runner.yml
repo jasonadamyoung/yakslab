@@ -1,0 +1,16 @@
+---
+- name: GITLAB RUNNER | DOCKER | Create configuration directory
+  file:
+    path: /etc/gitlab-runner-docker
+    state: directory
+    mode: 0755
+
+- name: GITLAB RUNNER | DOCKER | Start Runner container
+  docker_container:
+    name: {{ gitlab_runner_docker_container_name }}
+    image: gitlab/gitlab-runner:{{ gitlab_runner_docker_version }}
+    state: started
+    restart_policy: always
+    volumes:
+      - /etc/gitlab-runner-docker:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock

@@ -49,6 +49,7 @@
 
 - name: Install docker and docker-compose pip module
   pip:
+    executable: pip3
     name:
       - docker
       - docker-compose

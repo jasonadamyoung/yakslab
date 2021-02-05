@@ -1,0 +1,29 @@
+---
+- name: set extra_server_args - use docker
+  set_fact:
+    extra_server_args: >
+         {%- set argslist = ["--docker"] %}
+         {%- for arg in extra_server_args|default([]) %}
+         {%-  set argslist = argslist.append( arg ) %}
+         {%- endfor %}
+         {{- argslist -}}
+  when: (k3s_use_docker|default(false))
+
+- name: Get the k3s server token
+  set_fact:
+    k3s_server_token: "{{ lookup('file', local_k3s_token_file) | b64decode | regex_replace('\n', '') }}"
+
+- name: Copy K3s service file
+  template:
+    src: "k3s.agent.service.j2"
+    dest: "{{ systemd_dir }}/k3s-node.service"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Enable and check K3s service
+  systemd:
+    name: k3s-node
+    daemon_reload: yes
+    state: restarted
+    enabled: yes

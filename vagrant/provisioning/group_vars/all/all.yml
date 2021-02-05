@@ -1,0 +1,8 @@
+---
+  gitlab_use_mailhog: true
+  gitlab_runner_package_host: "http://gitlab_runner.gitlab"
+  gitlab_package_host: "http://gitlab_ee.gitlab"
+  docker_package_host: "http://docker_ce.docker"
+  apt_proxy_host: "{{ vault_apt_proxy_host }}"
+  container_proxy_host: "{{ vault_container_proxy_host }}"
+  k3s_proxy_url: "{{ vault_k3s_proxy_url }}"
