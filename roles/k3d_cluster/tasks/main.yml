@@ -1,4 +1,14 @@
 ---
+- name: K3D_CLUSTER | check if k3d is installed
+  stat:
+    path: /usr/local/bin/k3d
+  register: k3d_binary
+
+- name: K3D_CLUSTER | Bail if k3d is not installed
+  fail:
+    msg: "Please install k3d on this host"
+  when: not k3d_binary.stat.exists
+
 # dirs for bindmounts
 - { include: dirs.yml, tags: [ 'dirs' ] }
 

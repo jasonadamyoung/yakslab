@@ -1,7 +1,7 @@
 ---
 k3d_arch: k3d-linux-amd64
-k3d_version: v3.4.0
-k3d_checksum: 1c961f1161d7b7fb55658ee32081b250a0da6d5f81e40c307a0300e3e130d19f
+k3d_version: v4.1.0
+k3d_checksum: 108edf8bc3a6d4498620b56cdc46137e4426e6349fd64b47e922a94da3186536
 gcp_mtu: 1460
 docker_network_mtu: "{{ gcp_mtu }}"
 tcp_mss_mtu: "{{ docker_network_mtu|int - 90}}"
