@@ -1,9 +1,1 @@
-- hosts: gitlab
-  become: yes
-  become_method: sudo
-  roles:
-    - { role: 'mailhog', when: (gitlab_use_mailhog|bool and (gitlab_standalone|bool or 'gitlab_app' in group_names))}
-    - { role: 'omnibus-package' }
-    - { role: 'gitlab-config' }
-    - { role: 'gitlab-initial-setup', when: (gitlab_standalone|bool or 'gitlab_app' in group_names) }
-
+../../playbooks/gitlab.yml

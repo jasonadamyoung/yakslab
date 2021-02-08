@@ -1,9 +1,0 @@
----
-- name: GITLAB.RB | Set SMTP Settings for MailHog
-  template:
-    src: gitlab_rb_conf/mailhog_smtp.rb.j2
-    dest: /etc/gitlab/conf.d/mailhog_smtp.rb
-    owner: root
-    group: root
-    mode: 0600
-  when: (gitlab_use_mailhog|bool|default(true))

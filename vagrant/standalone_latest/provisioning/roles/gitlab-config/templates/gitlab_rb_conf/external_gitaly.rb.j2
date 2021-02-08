@@ -1,8 +1,0 @@
-git_data_dirs({
-  {% for host in groups['gitlab_gitaly'] %}
-    {% if loop.index == 1 %}
-    'default' => { 'gitaly_address' => 'tcp://{{ host }}:8075' },
-    {% endif %}
-    'storage{{ loop.index}}' => { 'gitaly_address' => 'tcp://{{ host }}:8075' },
-  {% endfor %}
-})
