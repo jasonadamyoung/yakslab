@@ -23,9 +23,9 @@ Vagrant's [Vagrantfile](https://www.vagrantup.com/docs/vagrantfile) is written i
 
 ### GitLab version expansion
 
-I have [written other code](https://gitlab.com/jayo/glops/-/blob/main/suplib/sup/gitlab/version_tools.rb) that uses the GitLab API to pull GitLab Release and Tag information. I thought about importing this code into the HostsMaker - but run into trouble requring other Gems other than the ones that are part of Vagrant. This probably belongs in a Vagrant plugin - but to maintain the ability to just use the standard libraries for now - the Version information for GitLab (and K3s) comes from a couple of yaml files: [GitLab](cached_gitlab_tag_info.yml) and [K3s](cached_k3s_release_info.yml).
+I have [written other code](https://gitlab.com/rambleon/yakslab/-/blob/main/yakslib/labtools/releases/gitlab.rb) that uses the GitLab API to pull GitLab Release and Tag information. I thought about importing this code into the HostsMaker - but run into trouble requring other Gems other than the ones that are part of Vagrant. This probably belongs in a Vagrant plugin - but to maintain the ability to just use the standard libraries for now - the Version information for GitLab (and K3s) comes from a couple of yaml files: [GitLab](cached_gitlab_tag_info.yml) and [K3s](cached_k3s_release_info.yml).
 
-These are actually maintained by a dedicated GitLab CI/CD project: [glops-cacher](https://gitlab.com/jayo/glops-cacher) - that's running a daily [scheduled pipeline](https://gitlab.com/jayo/glops-cacher/-/pipelines) to keep the tag/relese information updated.
+These are actually maintained by a dedicated GitLab CI/CD project (on a non-GitLab.com test instance) - that's running a daily [scheduled pipeline](https://gitlab.com/jayo/glops-cacher/-/pipelines) to keep the tag/relese information updated.
 
 ### IP Allocator
 
