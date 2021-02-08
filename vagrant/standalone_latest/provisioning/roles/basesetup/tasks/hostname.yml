@@ -1,4 +1,0 @@
----
-- name: manage hostname
-  hostname:
-    name: "{{ host_fqdn }}"

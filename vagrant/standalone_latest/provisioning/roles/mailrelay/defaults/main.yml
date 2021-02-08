@@ -1,6 +1,0 @@
----
-  mailrelay_packages:
-    - postfix
-    - libsasl2-2 
-    - ca-certificates 
-    - libsasl2-modules

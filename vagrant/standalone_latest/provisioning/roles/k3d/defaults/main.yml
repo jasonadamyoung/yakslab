@@ -1,9 +1,0 @@
----
-k3d_arch: k3d-linux-amd64
-k3d_version: v4.0.0
-k3d_checksum: 011e2aca2dddd9de7080d0ed58a010dad0c64cea15bf1d5f647cfedf50d2a793
-gcp_mtu: 1460
-docker_network_mtu: "{{ gcp_mtu }}"
-tcp_mss_mtu: "{{ docker_network_mtu|int - 90}}"
-alternate_ssh_port: 24
-use_alternate_ssh_port: false

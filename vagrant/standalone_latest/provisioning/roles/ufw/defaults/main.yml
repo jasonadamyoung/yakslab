@@ -1,4 +1,0 @@
----
-ufw_always_block_list: []
-ufw_always_allow_list: []
-ufw_allow_web_access: false

@@ -1,0 +1,11 @@
+---
+gitlab:
+- gitlab-latest.gldev
+gitlab_app:
+- gitlab-latest.gldev
+gitlab_app_primary:
+- gitlab-latest.gldev
+k3s:
+- k3s-server-1-16.gldev
+- k3s-agent01-1-16.gldev
+- k3s-agent02-1-16.gldev

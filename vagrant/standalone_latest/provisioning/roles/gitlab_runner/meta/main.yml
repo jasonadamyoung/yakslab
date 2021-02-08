@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: 'docker', when: (gitlab_runner_source == 'docker' or gitlab_runner_executor == 'docker') }

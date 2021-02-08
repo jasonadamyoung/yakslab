@@ -1,0 +1,30 @@
+---   
+- name: Pull Elasticsearch image
+  docker_image: 
+    name: elasticsearch:{{ elasticsearch }}
+    source: pull
+
+- name: Start Elasticsearch container
+  docker_container:
+    name: elasticsearch
+    image: elasticsearch:{{ elasticsearch }}
+    env:
+        http.host: 0.0.0.0
+        transport.host: 127.0.0.1
+        ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    state: started
+    restart: yes
+    ports: 
+      - "127.0.0.1:9200:9200"
+    exposed_ports:
+      - "{{ es_port }}"
+
+- debug: 
+    msg: [ 
+           "Elasticsearch URL is http://elastic:changeme@localhost:{{ es_port }}, ",
+           "-------------------------------------",
+           "Please enable Elasticsearch using the above URL as described in ",
+           "https://gitlab.com/help/integration/elasticsearch.md#enable-elasticsearch"
+           ]
+
+           

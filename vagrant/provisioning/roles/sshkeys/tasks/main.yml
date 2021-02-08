@@ -1,5 +1,0 @@
-- name: Get account list
-  getent:
-    database: passwd
-
-- { include: waldorf.yml, tags: [ 'waldorf' ], when: (getent_passwd.waldorf is defined) }

@@ -1,4 +1,0 @@
----
-  gitlab_edition: "ee"
-  gitlab_package: "gitlab-ee={{ gitlab_version }}-{{ gitlab_edition }}.0"
-  gitlab_package_host: "https://packages.gitlab.com/gitlab/gitlab-{{ gitlab_edition }}/ubuntu/"
