@@ -7,9 +7,11 @@
       state: present
 
 - name: Copy unattended-upgrades configuration
-  copy:
-    src: apt/
-    dest: /etc/apt/apt.conf.d/
+  template:
+    src: '{{ item.src }}'
+    dest: /etc/apt/apt.conf.d/{{ item.path }}
     owner: root
     group: root
     mode: 0644
+  with_filetree: templates/apt/
+  when: item.state == 'file'
