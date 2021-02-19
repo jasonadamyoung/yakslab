@@ -4,12 +4,12 @@
   roles:
     - statler
 
-# baselevel
+# basesetup
 - hosts: all
   become: yes
   become_method: sudo
   roles:
-    - baselevel
+    - basesetup
 
 # packageproxy
 - hosts: all
