@@ -14,7 +14,7 @@ prompt-toolkit = "*"
 ascii-graph = "*"
 openshift = "*"
 requests = "*"
-ansible = "*"
+ansible = "~=2.10"
 pycrypto = "*"
 
 [requires]
