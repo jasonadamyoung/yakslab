@@ -9,7 +9,7 @@
 - name: Copy unattended-upgrades configuration
   template:
     src: '{{ item.src }}'
-    dest: /etc/apt/apt.conf.d/{{ item.path }}
+    dest: /etc/apt/apt.conf.d/{{ item.path | regex_replace('\.j2','') }}
     owner: root
     group: root
     mode: 0644
