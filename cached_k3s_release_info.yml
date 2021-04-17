@@ -1,13 +1,20 @@
 ---
 '1.20':
-  v1.20.5+k3s1:
-    name: v1.20.5+k3s1
-    version: 1.20.5
-    k3s_version: 1.20.5.1
-    date: 2021-03-31
-    download_url: https://github.com/k3s-io/k3s/releases/download/v1.20.5%2Bk3s1/k3s
-    checksum: 948a55045fe7c142f082c68bfba16ca13d0a381a103633a2357aa40558dabcde
+  v1.20.6+k3s1:
+    name: v1.20.6+k3s1
+    version: 1.20.6
+    k3s_version: 1.20.6.1
+    date: 2021-04-16
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.20.6%2Bk3s1/k3s
+    checksum: 307438ead0c8fcbf9740b91ff1e100b7146c826d93546d3464252a54def21d46
   latest:
+    name: v1.20.6+k3s1
+    version: 1.20.6
+    k3s_version: 1.20.6.1
+    date: 2021-04-16
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.20.6%2Bk3s1/k3s
+    checksum: 307438ead0c8fcbf9740b91ff1e100b7146c826d93546d3464252a54def21d46
+  v1.20.5+k3s1:
     name: v1.20.5+k3s1
     version: 1.20.5
     k3s_version: 1.20.5.1
@@ -36,14 +43,21 @@
     download_url: https://github.com/k3s-io/k3s/releases/download/v1.20.0%2Bk3s2/k3s
     checksum: 81ab4cc4c7c24b731c62c77c782eac9ccfe1e29e3d6b7e38ad7b4ea424f9713b
 '1.19':
-  v1.19.9+k3s1:
-    name: v1.19.9+k3s1
-    version: 1.19.9
-    k3s_version: 1.19.9.1
-    date: 2021-03-31
-    download_url: https://github.com/k3s-io/k3s/releases/download/v1.19.9%2Bk3s1/k3s
-    checksum: a1dae309122daaeadb77fd065821061876903e54a6f497eaf22d3956b6950f2e
+  v1.19.10+k3s1:
+    name: v1.19.10+k3s1
+    version: 1.19.10
+    k3s_version: 1.19.10.1
+    date: 2021-04-16
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.19.10%2Bk3s1/k3s
+    checksum: 740451d8914477d4917338f55a321ad34af75dc59782b387088b8c1a3d33d607
   latest:
+    name: v1.19.10+k3s1
+    version: 1.19.10
+    k3s_version: 1.19.10.1
+    date: 2021-04-16
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.19.10%2Bk3s1/k3s
+    checksum: 740451d8914477d4917338f55a321ad34af75dc59782b387088b8c1a3d33d607
+  v1.19.9+k3s1:
     name: v1.19.9+k3s1
     version: 1.19.9
     k3s_version: 1.19.9.1
