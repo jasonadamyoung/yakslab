@@ -9,14 +9,6 @@
     key: "{{ lookup('file', 'public_keys/' + item) }}"
   loop: '{{statler_always_allowed_keys}}'
 
-- name: Add statler allowed account keys on bastion
-  authorized_key:
-    user: statler
-    key: "{{ lookup('file', 'public_keys/' + item,  errors='ignore') }}"
-  with_items:
-    '{{statler_bastion_allowed_keys | default([])}}'
-  when: (item != '' and 'bastion' in group_names)
-
 - name: Add statler allowed account keys
   authorized_key:
     user: statler
