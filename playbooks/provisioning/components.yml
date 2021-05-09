@@ -11,14 +11,6 @@
   roles:
     - basesetup
 
-# packageproxy
-- hosts: all
-  become: yes
-  become_method: sudo
-  roles:
-    - packageproxy
-
-
 # updates
 - hosts: all
   become: yes

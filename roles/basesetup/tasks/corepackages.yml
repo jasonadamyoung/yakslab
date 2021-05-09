@@ -1,5 +1,12 @@
+# packageproxy
+- name: Set Package Proxy
+  import_role:
+    name: packageproxy
+    tasks_from: client
+    
 - name: update apt cache
-  apt: update_cache=yes
+  apt: 
+    update_cache: yes
 
 - name: Install required system and dev packages.
   apt:
@@ -8,4 +15,3 @@
          - mailutils
          - aptitude
       state: present
-
