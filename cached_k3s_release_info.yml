@@ -1,28 +1,20 @@
 ---
-'1.21':
-  v1.21.0+k3s1:
-    name: v1.21.0+k3s1
-    version: 1.21.0
-    k3s_version: 1.21.0.1
-    date: 2021-04-26
-    download_url: https://github.com/k3s-io/k3s/releases/download/v1.21.0%2Bk3s1/k3s
-    checksum: 28b732998138e3185988cd2aefb352461e1bf517cf8f7435d8511352cc5d962b
-  latest:
-    name: v1.21.0+k3s1
-    version: 1.21.0
-    k3s_version: 1.21.0.1
-    date: 2021-04-26
-    download_url: https://github.com/k3s-io/k3s/releases/download/v1.21.0%2Bk3s1/k3s
-    checksum: 28b732998138e3185988cd2aefb352461e1bf517cf8f7435d8511352cc5d962b
 '1.20':
-  v1.20.6+k3s1:
-    name: v1.20.6+k3s1
-    version: 1.20.6
-    k3s_version: 1.20.6.1
-    date: 2021-04-16
-    download_url: https://github.com/k3s-io/k3s/releases/download/v1.20.6%2Bk3s1/k3s
-    checksum: 307438ead0c8fcbf9740b91ff1e100b7146c826d93546d3464252a54def21d46
+  v1.20.7+k3s1:
+    name: v1.20.7+k3s1
+    version: 1.20.7
+    k3s_version: 1.20.7.1
+    date: 2021-05-20
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.20.7%2Bk3s1/k3s
+    checksum: 95b91eb9af7fed60d5201d783edcd0de1f84fb5953cee2286fd0e5cf4d30d3f5
   latest:
+    name: v1.20.7+k3s1
+    version: 1.20.7
+    k3s_version: 1.20.7.1
+    date: 2021-05-20
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.20.7%2Bk3s1/k3s
+    checksum: 95b91eb9af7fed60d5201d783edcd0de1f84fb5953cee2286fd0e5cf4d30d3f5
+  v1.20.6+k3s1:
     name: v1.20.6+k3s1
     version: 1.20.6
     k3s_version: 1.20.6.1
@@ -58,14 +50,21 @@
     download_url: https://github.com/k3s-io/k3s/releases/download/v1.20.0%2Bk3s2/k3s
     checksum: 81ab4cc4c7c24b731c62c77c782eac9ccfe1e29e3d6b7e38ad7b4ea424f9713b
 '1.19':
-  v1.19.10+k3s1:
-    name: v1.19.10+k3s1
-    version: 1.19.10
-    k3s_version: 1.19.10.1
-    date: 2021-04-16
-    download_url: https://github.com/k3s-io/k3s/releases/download/v1.19.10%2Bk3s1/k3s
-    checksum: 740451d8914477d4917338f55a321ad34af75dc59782b387088b8c1a3d33d607
+  v1.19.11+k3s1:
+    name: v1.19.11+k3s1
+    version: 1.19.11
+    k3s_version: 1.19.11.1
+    date: 2021-05-20
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.19.11%2Bk3s1/k3s
+    checksum: 5972d24501c3861ef8f8428fb204f23a835d983aa223716e6bc19d28f844ca42
   latest:
+    name: v1.19.11+k3s1
+    version: 1.19.11
+    k3s_version: 1.19.11.1
+    date: 2021-05-20
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.19.11%2Bk3s1/k3s
+    checksum: 5972d24501c3861ef8f8428fb204f23a835d983aa223716e6bc19d28f844ca42
+  v1.19.10+k3s1:
     name: v1.19.10+k3s1
     version: 1.19.10
     k3s_version: 1.19.10.1
@@ -157,14 +156,21 @@
     download_url: https://github.com/k3s-io/k3s/releases/download/v1.19.1%2Bk3s1/k3s
     checksum: 2c384ba73f99a54a5ac6e6e959e53647dcd306ecb1ed9049ec0bbb5bc3a231ef
 '1.18':
-  v1.18.17+k3s1:
-    name: v1.18.17+k3s1
-    version: 1.18.17
-    k3s_version: 1.18.17.1
-    date: 2021-03-31
-    download_url: https://github.com/k3s-io/k3s/releases/download/v1.18.17%2Bk3s1/k3s
-    checksum: 1c6e62a6bd2b7a72ff571c972635a9035a747cfe58355c68e676dc0f1577f2a2
+  v1.18.19+k3s1:
+    name: v1.18.19+k3s1
+    version: 1.18.19
+    k3s_version: 1.18.19.1
+    date: 2021-05-20
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.18.19%2Bk3s1/k3s
+    checksum: f3a4006f66cb368e6045f387453979bace9bd119a0db249fa47f1c5aee063505
   latest:
+    name: v1.18.19+k3s1
+    version: 1.18.19
+    k3s_version: 1.18.19.1
+    date: 2021-05-20
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.18.19%2Bk3s1/k3s
+    checksum: f3a4006f66cb368e6045f387453979bace9bd119a0db249fa47f1c5aee063505
+  v1.18.17+k3s1:
     name: v1.18.17+k3s1
     version: 1.18.17
     k3s_version: 1.18.17.1
@@ -269,6 +275,21 @@
     date: 2020-05-04
     download_url: https://github.com/k3s-io/k3s/releases/download/v1.18.2-rc3%2Bk3s1/k3s
     checksum: 812205e670eaf20cc81b0b6123370edcf84914e16a2452580285367d23525d0f
+'1.21':
+  v1.21.0+k3s1:
+    name: v1.21.0+k3s1
+    version: 1.21.0
+    k3s_version: 1.21.0.1
+    date: 2021-04-26
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.21.0%2Bk3s1/k3s
+    checksum: 28b732998138e3185988cd2aefb352461e1bf517cf8f7435d8511352cc5d962b
+  latest:
+    name: v1.21.0+k3s1
+    version: 1.21.0
+    k3s_version: 1.21.0.1
+    date: 2021-04-26
+    download_url: https://github.com/k3s-io/k3s/releases/download/v1.21.0%2Bk3s1/k3s
+    checksum: 28b732998138e3185988cd2aefb352461e1bf517cf8f7435d8511352cc5d962b
 '1.17':
   v1.17.17+k3s1:
     name: v1.17.17+k3s1
