@@ -5,10 +5,10 @@ latest_release:
   url: https://gitlab.com/gitlab-org/gitlab/-/releases/v13.12.0-ee
   post: https://about.gitlab.com/releases/2021/05/22/gitlab-13-12-released/
 latest:
-  name: v13.12.0-ee
-  version: 13.12.0
-  url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.0-ee
-  date: 2021-05-21
+  name: v13.12.1-ee
+  version: 13.12.1
+  url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.1-ee
+  date: 2021-05-25
 '13':
   latest_release:
     version: 13.12.0
@@ -16,10 +16,10 @@ latest:
     url: https://gitlab.com/gitlab-org/gitlab/-/releases/v13.12.0-ee
     post: https://about.gitlab.com/releases/2021/05/22/gitlab-13-12-released/
   latest:
-    name: v13.12.0-ee
-    version: 13.12.0
-    url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.0-ee
-    date: 2021-05-21
+    name: v13.12.1-ee
+    version: 13.12.1
+    url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.1-ee
+    date: 2021-05-25
   '13.12':
     release:
       version: 13.12.0
@@ -27,10 +27,15 @@ latest:
       url: https://gitlab.com/gitlab-org/gitlab/-/releases/v13.12.0-ee
       post: https://about.gitlab.com/releases/2021/05/22/gitlab-13-12-released/
     latest:
-      name: v13.12.0-ee
-      version: 13.12.0
-      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.0-ee
-      date: 2021-05-21
+      name: v13.12.1-ee
+      version: 13.12.1
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.1-ee
+      date: 2021-05-25
+    13.12.1:
+      name: v13.12.1-ee
+      version: 13.12.1
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.1-ee
+      date: 2021-05-25
     13.12.0:
       name: v13.12.0-ee
       version: 13.12.0
