@@ -1,0 +1,11 @@
+- hosts: gitlab
+  become: yes
+  become_method: sudo
+  roles:
+    - gitlabcerts
+
+- hosts: yaksdb,datastore
+  become: yes
+  become_method: sudo
+  roles:
+    - postgrescerts

@@ -1,0 +1,5 @@
+- hosts: yaksdb,datastore
+  become: yes
+  become_method: sudo
+  roles:
+    - postgrescerts

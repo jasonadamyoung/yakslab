@@ -5,7 +5,7 @@ module LabCommand
     class Deploy < LabCommand::Base
       def initialize(options: {})
         @options = options
-        playbook_file = 'playbooks/gitlabcerts.yml'
+        playbook_file = 'playbooks/deploycerts.yml'
         @ansible_playbook = LabTools::Ansible::Playbook.new(playbook_file: playbook_file,options: @options)
       end
 

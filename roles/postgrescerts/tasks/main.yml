@@ -1,0 +1,23 @@
+---
+- name: copy certs
+  copy:
+    src: "certs/{{ item.cert}}/fullchain.pem"
+    dest: "/etc/ssl/certs/{{item.name}}.crt"
+    owner: root
+    group: ssl-cert
+    mode: 0640
+  loop: "{{ postgres_cert_list|flatten(levels=1) }}"
+  notify:
+    - Restart Postgres
+
+
+- name: copy keys
+  copy:
+    src: "certs/{{ item.cert}}/privkey.pem"
+    dest: "/etc/ssl/private/{{item.name}}.key"
+    owner: root
+    group: ssl-cert
+    mode: 0640
+  loop: "{{ postgres_cert_list|flatten(levels=1) }}"
+  notify:
+    - Restart Postgres
