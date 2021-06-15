@@ -9,7 +9,6 @@ certificates/
 
 # ignore cluster subdirs for now
 clusters/*
-!clusters/tools
 
 # ignore retry files
 *.retry
