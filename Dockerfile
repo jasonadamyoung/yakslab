@@ -19,7 +19,7 @@ RUN apt-get update -y \
 RUN apt-get install -y ruby ruby-dev
 RUN apt-get install -y  python3 python3-setuptools python3-pip python-is-python3
 
-ENV KUBE_LATEST_VERSION="v1.20.2"
+ENV KUBE_LATEST_VERSION="v1.21.1"
 
 RUN curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBE_LATEST_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
  && chmod +x /usr/local/bin/kubectl
