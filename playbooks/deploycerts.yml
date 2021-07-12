@@ -1,4 +1,4 @@
-- hosts: gitlab
+- hosts: gitlab,gltest
   become: yes
   become_method: sudo
   roles:
