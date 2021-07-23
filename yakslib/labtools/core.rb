@@ -3,6 +3,7 @@ require_relative 'options'
 
 require_relative 'ansible/playbook'
 require_relative 'ansible/vault'
+require_relative 'gitlab/cluster_integration'
 require_relative 'k3s/remote_tools'
 require_relative 'k3d/remote_tools'
 require_relative 'kubernetes/cluster'

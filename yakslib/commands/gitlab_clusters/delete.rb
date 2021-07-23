@@ -26,7 +26,7 @@ module LabCommand
           @cluster = LabTools::Kubernetes::Cluster.new(with_file: @kubeconfig_file)
         end
 
-        @cluster_integration = Sup::GitLab::ClusterIntegration.new(service_account: nil, group: @group, project: @project, profile: @profile)
+        @cluster_integration = LabTools::GitLab::ClusterIntegration.new(service_account: nil, group: @group, project: @project, profile: @profile)
         @prompt = prompt
       end
 
