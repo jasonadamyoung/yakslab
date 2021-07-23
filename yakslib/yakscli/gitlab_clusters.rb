@@ -9,7 +9,7 @@ module YaksCLI
     desc "list", "Show configured cluster integrations for the specified group or project"
     def list
       require_relative '../commands/gitlab_clusters/list'
-      Sup::Commands::GitLabClusters::List.new(options: options).🚀
+      LabCommand::GitLabClusters::List.new(options: options).🚀
     end
 
     desc "add CLUSTERNAME", "Add a cluster named CLUSTERNAME to the specified group or project"
@@ -21,7 +21,7 @@ module YaksCLI
     method_option :cluster_options, :type => :hash, :default => {}, :desc => "Cluster options (environment_scope, domain, management_project_id, etc.)"
     def add(cluster_name)
       require_relative '../commands/gitlab_clusters/add'
-      Sup::Commands::GitLabClusters::Add.new(cluster_name: cluster_name, options: options).🚀
+      LabCommand::GitLabClusters::Add.new(cluster_name: cluster_name, options: options).🚀
     end
 
     desc "update CLUSTERNAME", "Update the cluster named CLUSTERNAME within the specified group or project"
@@ -31,7 +31,7 @@ module YaksCLI
     method_option :cluster_options, :type => :hash, :default => {}, :desc => "Cluster options (environment_scope, domain, management_project_id, etc.)"
     def update(cluster_name)
       require_relative '../commands/gitlab_clusters/update'
-      Sup::Commands::GitLabClusters::Update.new(cluster_name: cluster_name, options: options).🚀
+      LabCommand::GitLabClusters::Update.new(cluster_name: cluster_name, options: options).🚀
     end
 
 
@@ -39,7 +39,7 @@ module YaksCLI
     method_option :confirm_delete, :type => :boolean, :default => false, :desc => "Make sure the deletion is confirmed"
     def delete(cluster_name)
       require_relative '../commands/gitlab_clusters/delete'
-      Sup::Commands::GitLabClusters::Delete.new(cluster_name: cluster_name, options: options).🚀
+      LabCommand::GitLabClusters::Delete.new(cluster_name: cluster_name, options: options).🚀
     end
 
   end

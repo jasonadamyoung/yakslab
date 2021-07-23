@@ -51,3 +51,6 @@ apicache/*
 
 # ignore .vscode
 .vscode/
+
+# ignore .bundle
+.bundle/

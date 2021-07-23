@@ -28,7 +28,7 @@ module LabCommand
         end
 
         @service_account = LabTools::Kubernetes::ServiceAccount.new(cluster: @cluster, name: @options[:service_account_name], namespace: @options[:service_account_namespace])
-        @cluster_integration = Sup::GitLab::ClusterIntegration.new(service_account: @service_account, group: @group, project: @project, profile: @profile)
+        @cluster_integration = LabTools::GitLab::ClusterIntegration.new(service_account: @service_account, group: @group, project: @project, profile: @profile)
         @prompt = prompt
       end
 

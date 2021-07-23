@@ -20,7 +20,7 @@ module LabCommand
         end
 
         @profile = @options[:profile]
-        @cluster_integration = Sup::GitLab::ClusterIntegration.new(service_account: nil, group: @group, project: @project, profile: @profile)
+        @cluster_integration = LabTools::GitLab::ClusterIntegration.new(service_account: nil, group: @group, project: @project, profile: @profile)
       end
 
       def 🚀

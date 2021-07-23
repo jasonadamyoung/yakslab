@@ -7,7 +7,7 @@ module LabTools
 
       def initialize(service_account:, group: '', project: '', profile:)
         @service_account = service_account
-        @profile = profile
+        @profile = profile || "default"
 
         # validate LabClient configuration
         labclient_profiles = File.expand_path("~/.gitlab-labclient")

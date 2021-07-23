@@ -1,4 +1,4 @@
-- hosts: gitlab
+- hosts: omnibus
   become: yes
   become_method: sudo
   roles:
