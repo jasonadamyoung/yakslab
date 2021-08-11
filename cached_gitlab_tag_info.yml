@@ -104,10 +104,10 @@ latest:
     url: https://gitlab.com/gitlab-org/gitlab/-/releases/v13.12.0-ee
     post: https://about.gitlab.com/releases/2021/05/22/gitlab-13-12-released/
   latest:
-    name: v13.12.9-ee
-    version: 13.12.9
-    url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.9-ee
-    date: 2021-08-03
+    name: v13.12.10-ee
+    version: 13.12.10
+    url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.10-ee
+    date: 2021-08-10
   '13.12':
     release:
       version: 13.12.0
@@ -115,10 +115,15 @@ latest:
       url: https://gitlab.com/gitlab-org/gitlab/-/releases/v13.12.0-ee
       post: https://about.gitlab.com/releases/2021/05/22/gitlab-13-12-released/
     latest:
-      name: v13.12.9-ee
-      version: 13.12.9
-      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.9-ee
-      date: 2021-08-03
+      name: v13.12.10-ee
+      version: 13.12.10
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.10-ee
+      date: 2021-08-10
+    13.12.10:
+      name: v13.12.10-ee
+      version: 13.12.10
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v13.12.10-ee
+      date: 2021-08-10
     13.12.9:
       name: v13.12.9-ee
       version: 13.12.9
