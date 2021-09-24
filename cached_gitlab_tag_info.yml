@@ -120,10 +120,15 @@ latest:
       url: https://gitlab.com/gitlab-org/gitlab/-/releases/v14.0.0-ee
       post: https://about.gitlab.com/releases/2021/06/22/gitlab-14-0-released/
     latest:
-      name: v14.0.10-ee
-      version: 14.0.10
-      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.0.10-ee
-      date: 2021-09-02
+      name: v14.0.11-ee
+      version: 14.0.11
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.0.11-ee
+      date: 2021-09-23
+    14.0.11:
+      name: v14.0.11-ee
+      version: 14.0.11
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.0.11-ee
+      date: 2021-09-23
     14.0.10:
       name: v14.0.10-ee
       version: 14.0.10
