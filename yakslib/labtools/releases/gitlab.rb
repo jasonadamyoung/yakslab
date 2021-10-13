@@ -17,7 +17,7 @@ module LabTools
       GITLAB_VERSION_REGEX = %r{v(?<version>[\w|\.|-]+)}
 
       GITLAB_RELEASE_DAY = 22
-      BACKPORT_TAG_CACHE_TIME = 1.hour
+      BACKPORT_TAG_CACHE_TIME = 4.hour
 
       # project id's for gitlab and gitlab-foss @ gitlab.com
       GITLAB_INSTANCE_URL = 'https://gitlab.com'
@@ -357,7 +357,7 @@ module LabTools
       def tags_cache_missing_or_outdated_for_release?(release:)
         cache_file = tag_cache_file_for_release(release: release)
         return true if !File.exists?(cache_file)
-        return false if !is_backport_release?(release: release)
+        #return false if !is_backport_release?(release: release)
         cached_time = File.mtime(cache_file)
         return ((Time.now - BACKPORT_TAG_CACHE_TIME) >= cached_time)
       end
