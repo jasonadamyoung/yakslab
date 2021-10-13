@@ -15,9 +15,9 @@ module LabCommand
 
 
       def 🚀
-
+        spinner = TTY::Spinner.new("Query GitLab for GitLab Releases :spinner ...", format: :bouncing_ball)
+        spinner.auto_spin
         data_format = (@output_format =~ /^raw/) ? 'hash' : 'filtered_hash'
-
         case @show_version
         when 'backports'
           release_and_tag_data = @release_tools.backports_release_tags(format: data_format)
@@ -28,6 +28,7 @@ module LabCommand
         else #assume version number
           release_and_tag_data = @release_tools.latest_release_tag_for_version(version_number: @show_version, format: data_format)
         end
+        spinner.stop('Done!')
 
         case @output_format
         when 'json'
