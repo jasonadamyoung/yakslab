@@ -11,7 +11,7 @@ However, my use case is a bunch of independent "setups" to install GitLab test i
 I had the following goals:
 
 * Minimal configuration settings for each "setup" (group of hosts)
-* Programmatic logic to expand each "setup" into the vagrant box and provisioner (I'm using Ansbile) settings.
+* Programmatic logic to expand each "setup" into the vagrant box and provisioner (I'm using Ansible) settings.
 * Programmatic logic to set IP Address and host name for each host.
 * Programmatic logic to determine the latest GitLab version (so I didn't have to keep updating the configuration file for every GitLab release)
 
@@ -151,4 +151,3 @@ One of the drawbacks of using [Ansible auto-generated inventory](https://www.vag
 So I'm making use of [Vagrant triggers](https://www.vagrantup.com/docs/triggers) to inject an ["Initial Playbook"](./provisioning/vagrant_initial_provision.yml) after the first `vagrant up` - after that `vagrant provision` will work normally.
 
 See the [Vagrantfile](./Vagrantfile) comments for more details.
-
