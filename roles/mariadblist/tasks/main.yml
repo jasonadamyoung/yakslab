@@ -1,0 +1,15 @@
+- name: Create Databases
+  mysql_db:
+    name: "{{ item.key }}"
+    state: present
+  with_dict: "{{ mysqldatabaselist }}"
+
+- name: Update Database Users
+  mysql_user:
+    name: "{{ item.key }}"
+    password: "{{ item.value.password }}"
+    priv: "{{ item.value.permissions|join('/')}}"
+    state: present
+    host: '%'
+    update_password: 'always'
+  with_dict: "{{ mysqldatabaselist }}"

@@ -1,4 +1,4 @@
-- hosts: yaksdb,datastore
+- hosts: yaksdb,outdb
   become: yes
   become_method: sudo
   roles:
