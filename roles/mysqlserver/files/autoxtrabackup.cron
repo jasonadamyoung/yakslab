@@ -1,3 +1,0 @@
-# cron.d task for autoextrabackup
-# m h dom mon dow user	command
-0 *   * * *   root    /srv/scripts/autoxtrabackup.sh

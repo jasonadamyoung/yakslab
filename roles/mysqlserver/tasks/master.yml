@@ -1,5 +1,0 @@
-# time zone tables
-- name: DBSERVER | MASTER | run the install script when there are now rows in the time_zone table
-  shell: mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql --database=mysql
-  ignore_errors: true
-  
