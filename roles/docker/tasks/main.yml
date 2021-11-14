@@ -46,12 +46,12 @@
     state: directory
     mode: 0755
 
-- name: Download proxy ca-cert
+- name: Download docker compose binary
   get_url:
     url:  "https://github.com/docker/compose/releases/download/v2.1.1/docker-compose-linux-x86_64"
     dest: /usr/local/lib/docker/cli-plugins/docker-compose
     mode: 0755
-    
+
 # proxy information
 - { include: proxy.yml, tags: [ 'proxy' ], when: (container_proxy_host is defined) }
 
