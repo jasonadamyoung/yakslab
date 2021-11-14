@@ -40,20 +40,18 @@
   tags:
     - daemonconfig
 
-- name: Install pip3
-  become: yes
-  apt:
-    pkg:
-      - python3-pip
-    state: present
+- name: Make sure /usr/local/lib/docker/cli-plugins exists
+  file:
+    path: /usr/local/lib/docker/cli-plugins
+    state: directory
+    mode: 0755
 
-- name: Install docker and docker-compose pip module
-  pip:
-    executable: pip3
-    name:
-      - docker
-      - docker-compose
-
+- name: Download proxy ca-cert
+  get_url:
+    url:  "https://github.com/docker/compose/releases/download/v2.1.1/docker-compose-linux-x86_64"
+    dest: /usr/local/lib/docker/cli-plugins/docker-compose
+    mode: 0755
+    
 # proxy information
 - { include: proxy.yml, tags: [ 'proxy' ], when: (container_proxy_host is defined) }
 
