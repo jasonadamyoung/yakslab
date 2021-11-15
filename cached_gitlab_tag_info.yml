@@ -135,10 +135,15 @@ latest:
       url: https://gitlab.com/gitlab-org/gitlab/-/releases/v14.1.0-ee
       post: https://about.gitlab.com/releases/2021/07/22/gitlab-14-1-released/
     latest:
-      name: v14.1.7-ee
-      version: 14.1.7
-      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.1.7-ee
-      date: 2021-09-30
+      name: v14.1.8-ee
+      version: 14.1.8
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.1.8-ee
+      date: 2021-11-15
+    14.1.8:
+      name: v14.1.8-ee
+      version: 14.1.8
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.1.8-ee
+      date: 2021-11-15
     14.1.7:
       name: v14.1.7-ee
       version: 14.1.7
