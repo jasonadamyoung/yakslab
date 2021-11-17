@@ -40,6 +40,20 @@
   tags:
     - daemonconfig
 
+- name: Install pip3
+  become: yes
+  apt:
+    pkg:
+      - python3-pip
+    state: present
+
+# this will be used later in ansible roles that utilize docker
+- name: Install docker pip module
+  pip:
+    executable: pip3
+    name:
+      - docker
+
 - name: Make sure /usr/local/lib/docker/cli-plugins exists
   file:
     path: /usr/local/lib/docker/cli-plugins
