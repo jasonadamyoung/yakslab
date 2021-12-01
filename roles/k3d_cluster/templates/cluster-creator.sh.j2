@@ -22,15 +22,15 @@
  --port {{ port }}:{{ port }}@loadbalancer \
 {% endfor %}
 {# volumes #}
- --volume /data/k3d/{{ k3d_cluster_name }}/pv:/var/lib/rancher/k3s/storage@server[0]  \
- --volume /data/k3d/{{ k3d_cluster_name }}/logs-server:/var/log@server[0]  \
+ --volume /data/k3d/{{ k3d_cluster_name }}/pv:/var/lib/rancher/k3s/storage@server:0  \
+ --volume /data/k3d/{{ k3d_cluster_name }}/logs-server:/var/log@server:0  \
 {# this a hack bind mount to try to make filebeat/elasticsearch GitLab managed app work properly #}
- --volume /data/k3d/{{ k3d_cluster_name }}/logs-server/containers:/var/lib/docker/containers@server[0]  \
+ --volume /data/k3d/{{ k3d_cluster_name }}/logs-server/containers:/var/lib/docker/containers@server:0  \
 {% for i in range(k3d_agent_count) %}
- --volume /data/k3d/{{ k3d_cluster_name }}/pv:/var/lib/rancher/k3s/storage@agent[{{ i }}] \
- --volume /data/k3d/{{ k3d_cluster_name }}/logs-agent{{ i }}:/var/log@agent[{{ i }}] \
+ --volume /data/k3d/{{ k3d_cluster_name }}/pv:/var/lib/rancher/k3s/storage@agent:{{ i }} \
+ --volume /data/k3d/{{ k3d_cluster_name }}/logs-agent{{ i }}:/var/log@agent:{{ i }} \
 {# this a hack bind mount to try to make filebeat/elasticsearch GitLab managed app work properly #}
- --volume /data/k3d/{{ k3d_cluster_name }}/logs-agent{{ i }}/containers:/var/lib/docker/containers@agent[{{ i }}] \
+ --volume /data/k3d/{{ k3d_cluster_name }}/logs-agent{{ i }}/containers:/var/lib/docker/containers@agent:{{ i }} \
 {% endfor %}
 {# end volumes #}
  --image "{{ k3d_k3s_image }}"
