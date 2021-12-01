@@ -11,10 +11,10 @@
 /usr/local/bin/k3d cluster create {{ k3d_cluster_name }} \
  --network {{ k3d_cluster_name }}_net \
 {% if k3d_no_traefik|bool|default(false) %}
- --k3s-server-arg --no-deploy --k3s-server-arg traefik \
+ --k3s-arg --no-deploy --k3s-arg traefik \
 {% endif %}
 {% if k3d_host_ip is defined %}
- --k3s-server-arg --tls-san --k3s-server-arg {{ k3d_host_ip }} \
+ --k3s-arg --tls-san --k3s-arg {{ k3d_host_ip }} \
 {% endif %}
  --agents {{ k3d_agent_count }} --api-port {{ k3d_api_host }}:{{ k3d_api_port }} \
 {# ports #}
