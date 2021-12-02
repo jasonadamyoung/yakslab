@@ -48,10 +48,15 @@ latest:
       url: https://gitlab.com/gitlab-org/gitlab/-/releases/v14.4.0-ee
       post: https://about.gitlab.com/releases/2021/10/22/gitlab-14-4-released/
     latest:
-      name: v14.4.2-ee
-      version: 14.4.2
-      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.4.2-ee
-      date: 2021-11-08
+      name: v14.4.3-ee
+      version: 14.4.3
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.4.3-ee
+      date: 2021-12-01
+    14.4.3:
+      name: v14.4.3-ee
+      version: 14.4.3
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.4.3-ee
+      date: 2021-12-01
     14.4.2:
       name: v14.4.2-ee
       version: 14.4.2
