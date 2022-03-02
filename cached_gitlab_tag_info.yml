@@ -89,10 +89,15 @@ latest:
       url: https://gitlab.com/gitlab-org/gitlab/-/releases/v14.6.0-ee
       post: https://about.gitlab.com/releases/2021/12/22/gitlab-14-6-released/
     latest:
-      name: v14.6.5-ee
-      version: 14.6.5
-      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.6.5-ee
-      date: 2022-02-25
+      name: v14.6.6-ee
+      version: 14.6.6
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.6.6-ee
+      date: 2022-03-01
+    14.6.6:
+      name: v14.6.6-ee
+      version: 14.6.6
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.6.6-ee
+      date: 2022-03-01
     14.6.5:
       name: v14.6.5-ee
       version: 14.6.5
