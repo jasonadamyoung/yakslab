@@ -14,7 +14,7 @@
 # download k3d binary
 - name: DOWNLOAD | Download k3d binary x64 from k3d releases
   get_url:
-    url: "https://github.com/rancher/k3d/releases/download/{{ k3d_version }}/{{ k3d_arch }}"
+    url: "https://github.com/k3d-io/k3d/releases/download/{{ k3d_version }}/{{ k3d_arch }}"
     dest: /usr/local/bin/k3d
     owner: root
     group: root

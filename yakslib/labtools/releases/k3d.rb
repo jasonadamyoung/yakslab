@@ -7,7 +7,7 @@ module LabTools
     class K3d
       include LabTools::Releases::Tools
       K3D_VERSION_REGEX = %r{v(?<version>[\w|\.|-]+)}
-      RELEASE_PROJECT = 'rancher/k3d'
+      RELEASE_PROJECT = 'k3d-io/k3d'
 
       def initialize(options: {})
         @release_data_source = 'github'
