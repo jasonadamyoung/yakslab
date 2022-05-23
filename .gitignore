@@ -27,8 +27,10 @@ dumpvars/
 roles.galaxy/
 ansible_collections/
 
-# ignore host dir
-hosts/
+# ignore hosts and clusters
+hosts
+clusters
+
 
 # ignore yaks tool settings
 .yaks.yml
