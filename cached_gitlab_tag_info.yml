@@ -1,14 +1,41 @@
 ---
 latest_release:
-  version: 14.10.0
-  date: 2022-04-22
-  url: https://gitlab.com/gitlab-org/gitlab/-/releases/v14.10.0-ee
-  post: https://about.gitlab.com/releases/2022/04/22/gitlab-14-10-released/
+  version: 15.0.0
+  date: 2022-05-22
+  url: https://gitlab.com/gitlab-org/gitlab/-/releases/v15.0.0-ee
+  post: https://about.gitlab.com/releases/2022/05/22/gitlab-15-0-released/
 latest:
-  name: v14.10.3-ee
-  version: 14.10.3
-  url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.10.3-ee
+  name: v15.0.0-ee
+  version: 15.0.0
+  url: https://gitlab.com/gitlab-org/gitlab/-/tags/v15.0.0-ee
   date: 2022-05-20
+'15':
+  latest_release:
+    version: 15.0.0
+    date: 2022-05-22
+    url: https://gitlab.com/gitlab-org/gitlab/-/releases/v15.0.0-ee
+    post: https://about.gitlab.com/releases/2022/05/22/gitlab-15-0-released/
+  latest:
+    name: v15.0.0-ee
+    version: 15.0.0
+    url: https://gitlab.com/gitlab-org/gitlab/-/tags/v15.0.0-ee
+    date: 2022-05-20
+  '15.0':
+    release:
+      version: 15.0.0
+      date: 2022-05-22
+      url: https://gitlab.com/gitlab-org/gitlab/-/releases/v15.0.0-ee
+      post: https://about.gitlab.com/releases/2022/05/22/gitlab-15-0-released/
+    latest:
+      name: v15.0.0-ee
+      version: 15.0.0
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v15.0.0-ee
+      date: 2022-05-20
+    15.0.0:
+      name: v15.0.0-ee
+      version: 15.0.0
+      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v15.0.0-ee
+      date: 2022-05-20
 '14':
   latest_release:
     version: 14.10.0

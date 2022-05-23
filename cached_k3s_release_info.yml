@@ -71,13 +71,6 @@
     date: 2022-04-28
     download_url: https://github.com/k3s-io/k3s/releases/download/v1.22.9%2Bk3s1/k3s
     checksum: 0b9bc681ba6fd7b75687f48245e5c5b73e4557e0b2fb29f6cfb9246aed1ae21e
-  v1.22.8+k3s1:
-    name: v1.22.8+k3s1
-    version: 1.22.8
-    k3s_version: 1.22.8.1
-    date: 2022-03-31
-    download_url: https://github.com/k3s-io/k3s/releases/download/v1.22.8%2Bk3s1/k3s
-    checksum: 8da6c2ded9ad7cf027b1cb9d8cd7e5ff51bc110488a67b2641ca125a3816436b
   v1.22.7+k3s1:
     name: v1.22.7+k3s1
     version: 1.22.7
