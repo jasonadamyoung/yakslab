@@ -151,16 +151,7 @@ latest:
       date: 2022-02-22
       url: https://gitlab.com/gitlab-org/gitlab/-/releases/v14.8.0-ee
       post: https://about.gitlab.com/releases/2022/02/22/gitlab-14-8-released/
-    latest:
-      name: v14.8.6-ee
-      version: 14.8.6
-      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.8.6-ee
-      date: 2022-04-29
-    14.8.6:
-      name: v14.8.6-ee
-      version: 14.8.6
-      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.8.6-ee
-      date: 2022-04-29
+    latest: {}
   '14.7':
     release:
       version: 14.7.0
