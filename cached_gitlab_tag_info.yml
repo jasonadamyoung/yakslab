@@ -124,11 +124,6 @@ latest:
       version: 14.10.3
       url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.10.3-ee
       date: 2022-05-20
-    14.10.2:
-      name: v14.10.2-ee
-      version: 14.10.2
-      url: https://gitlab.com/gitlab-org/gitlab/-/tags/v14.10.2-ee
-      date: 2022-05-04
   '14.9':
     release:
       version: 14.9.0
